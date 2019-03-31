@@ -80,7 +80,6 @@ public class DemoXML {
 					String id = attributes.getValue("id");
 
 					System.out.println("Start Element: " + qName);
-					System.out.println("Start Element: " + qName);
 
 					if (id != null)
 						System.out.println("ID: " + id);
