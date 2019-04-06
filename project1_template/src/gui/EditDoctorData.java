@@ -2,11 +2,15 @@ package gui;
 
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 
 public class EditDoctorData {
@@ -97,6 +101,28 @@ public class EditDoctorData {
 		textField_3.setColumns(10);
 		textField_3.setBounds(351, 173, 150, 21);
 		frame.getContentPane().add(textField_3);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setFont(new Font("新細明體", Font.PLAIN, 19));
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorList();
+			}
+		});
+		btnSave.setBounds(256, 617, 105, 41);
+		frame.getContentPane().add(btnSave);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setFont(new Font("新細明體", Font.PLAIN, 20));
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorList();
+			}
+		});
+		btnCancel.setBounds(376, 617, 107, 41);
+		frame.getContentPane().add(btnCancel);
 		
 		
 	}

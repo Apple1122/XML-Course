@@ -90,6 +90,15 @@ public class DoctorList {
 		btn_doctor1.setBounds(60, 332, 150, 43);
 		btn_doctor1.setActionCommand("d1");
 		
+		btn_doctor1.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				frame.setVisible(false);
+				new DoctorData();
+			}
+		});
+		
 		frame.getContentPane().add(btn_doctor1);
 		
 		JButton btn_doctor2 = new JButton("Doctor2");
@@ -134,9 +143,9 @@ public class DoctorList {
 		
 		JButton btnAddDoctor = new JButton("Add Doctor");
 		btnAddDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-<<<<<<< HEAD
-		btnAddDoctor.setBounds(878, 457, 150, 83);
-=======
+
+		btnAddDoctor.setBounds(878, 439, 179, 107);
+
 		btnAddDoctor.setBounds(899, 456, 129, 83);
 		btnAddDoctor.addActionListener(new ActionListener() 
 		{
@@ -147,7 +156,7 @@ public class DoctorList {
 			}
 		});
 		
->>>>>>> afae28d34d030c4348d70035f5740c40dc94c7ea
+
 		frame.getContentPane().add(btnAddDoctor);
 		
 

@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -49,6 +52,12 @@ public class PatientData {
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(428, 636, 85, 23);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorData();
+			}
+		});
 		frame.getContentPane().add(btnBack);
 		
 		JLabel lblPatientData = new JLabel("Patient Data");
