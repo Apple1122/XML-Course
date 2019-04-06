@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
 
 public class DoctorList {
 
@@ -25,6 +26,9 @@ public class DoctorList {
 		
 		JPanel doctors = new JPanel();
 		jFrame.getContentPane().add(doctors, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		doctors.add(lblNewLabel);
 		
 		
 	}
