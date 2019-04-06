@@ -108,8 +108,7 @@ public class DoctorList extends JFrame{
 		JPanel panel_7 = new JPanel();
 		panel_7.setBounds(470, 398, 150, 187);
 		frame.getContentPane().add(panel_7);
-		
-<<<<<<< HEAD
+	
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -170,7 +169,7 @@ public class DoctorList extends JFrame{
 		btnAddDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnAddDoctor.setBounds(899, 456, 129, 83);
 		frame.getContentPane().add(btnAddDoctor);
->>>>>>> 8485f64d89bb7ae078b8f1b1f7c1c4ec8854c5c8
+
 	}
 
 	/* add doctors from xml */
