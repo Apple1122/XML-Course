@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-public class EditDoctordata {
+public class AddNewDoctor {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -24,7 +24,7 @@ public class EditDoctordata {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditDoctordata window = new EditDoctordata();
+					AddNewDoctor window = new AddNewDoctor();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class EditDoctordata {
 	/**
 	 * Create the application.
 	 */
-	public EditDoctordata() {
+	public AddNewDoctor() {
 		initialize();
 	}
 
