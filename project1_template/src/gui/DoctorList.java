@@ -1,6 +1,6 @@
 package gui;
 
-<<<<<<< HEAD
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-=======
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,20 +23,17 @@ import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
->>>>>>> 8485f64d89bb7ae078b8f1b1f7c1c4ec8854c5c8
 
 import ece155b.data.Doctor;
 
 public class DoctorList extends JFrame{
 
-<<<<<<< HEAD
+
 	private Vector<Doctor> doctors;
 	private JPanel doctorList;
 	private JFrame jFrame;
 	
-=======
 	private JFrame frame;
->>>>>>> 8485f64d89bb7ae078b8f1b1f7c1c4ec8854c5c8
 	public static void main(String [] args)
 	{
 		
@@ -44,19 +41,8 @@ public class DoctorList extends JFrame{
 	
 	public DoctorList()
 	{
-<<<<<<< HEAD
 		jFrame = new JFrame("Doctor List");
-		jFrame.setTitle("Doctor List");
-		setSize(600,600);
 		
-		doctorList = new JPanel();
-		doctorList.setBackground(Color.YELLOW);
-		doctorList.setLayout(new GridLayout(0, 3));
-		// add each doctor into doctorList
-		addDoctor();
-		
-		
-=======
 		initialize();
 		
 	}
@@ -103,7 +89,6 @@ public class DoctorList extends JFrame{
 		JPanel panel_6 = new JPanel();
 		panel_6.setBounds(265, 398, 150, 187);
 		frame.getContentPane().add(panel_6);
->>>>>>> 8485f64d89bb7ae078b8f1b1f7c1c4ec8854c5c8
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setBounds(470, 398, 150, 187);
@@ -115,7 +100,6 @@ public class DoctorList extends JFrame{
         
         setVisible(true);
 		
-=======
 		JPanel panel_8 = new JPanel();
 		panel_8.setBounds(672, 398, 150, 187);
 		frame.getContentPane().add(panel_8);

@@ -4,8 +4,8 @@ import java.util.Vector;
 
 public class Doctor
 {
-    public String name = "MyName";
-    public String lastname = "MyLastName";
+    private String name = "MyName";
+    private String lastname = "MyLastName";
     
     private String imageFilePath;
     //add more variables for doctor as you wish
@@ -43,5 +43,31 @@ public class Doctor
         
         return xml;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getImageFilePath() {
+		return imageFilePath;
+	}
+
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
+	}
+    
+    
     
 }
