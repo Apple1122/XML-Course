@@ -6,6 +6,8 @@ public class Doctor
 {
     public String name = "MyName";
     public String lastname = "MyLastName";
+    
+    private String imageFilePath;
     //add more variables for doctor as you wish
     
     Vector <Patient> patients;
