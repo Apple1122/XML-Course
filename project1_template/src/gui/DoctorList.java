@@ -15,7 +15,7 @@ public class DoctorList {
 	private JFrame frame;
 	public static void main(String [] args)
 	{
-		
+		new DoctorList();
 	}
 	
 	public DoctorList()
@@ -33,6 +33,7 @@ public class DoctorList {
 		frame.setBounds(100, 100, 1109, 721);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JLabel lblDoctorList = new JLabel("Doctor List");
 		lblDoctorList.setFont(new Font("Times New Roman", Font.PLAIN, 40));
@@ -122,7 +123,7 @@ public class DoctorList {
 		
 		JButton btnAddDoctor = new JButton("Add Doctor");
 		btnAddDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnAddDoctor.setBounds(899, 456, 129, 83);
+		btnAddDoctor.setBounds(878, 457, 150, 83);
 		frame.getContentPane().add(btnAddDoctor);
 	}
 
