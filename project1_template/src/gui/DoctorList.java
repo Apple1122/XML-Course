@@ -138,7 +138,6 @@ public class DoctorList {
 		{
 			public void actionPerformed(ActionEvent ae)
 			{
-				frame.setVisible(false);
 				new EditDoctorData();
 			}
 		});
