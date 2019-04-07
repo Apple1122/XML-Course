@@ -64,7 +64,7 @@ public class DoctorData {
 		btnEditDoctor.setBounds(51, 331, 107, 33);
 		frame.getContentPane().add(btnEditDoctor);
 		
-		JButton btnAddPatient = new JButton("Add");
+		JButton btnAddPatient = new JButton("Add Patient");
 		btnAddPatient.setFont(new Font("新細明體", Font.PLAIN, 20));
 		btnAddPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,13 +72,9 @@ public class DoctorData {
 				new AddPatientData();
 			}
 		});
-		btnAddPatient.setBounds(374, 606, 107, 48);
+		btnAddPatient.setBounds(390, 606, 170, 48);
 		frame.getContentPane().add(btnAddPatient);
 		
-		JLabel lblPatient = new JLabel("Patient");
-		lblPatient.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblPatient.setBounds(493, 607, 95, 44);
-		frame.getContentPane().add(lblPatient);
 		
 		JLabel lblDoctorFirstname = new JLabel("Name:");
 		lblDoctorFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -153,7 +149,9 @@ public class DoctorData {
 			{
 				if(mouseEvent.getClickCount() == 2) 
 				{
+					int count = list.locationToIndex(mouseEvent.getPoint());
 					btnDelete.setVisible(true);
+					btnDelete.setText("Delete " + list.getModel().getElementAt(count));
 				}
 			}
 		});
