@@ -58,10 +58,6 @@ public class EditDoctorData {
 		lblEditDoctorData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblEditDoctorData);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
-		
 		JLabel lblDoctorFirstname = new JLabel("Doctor Firstname:");
 		lblDoctorFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
 		lblDoctorFirstname.setBounds(205, 111, 143, 21);
@@ -123,6 +119,10 @@ public class EditDoctorData {
 		});
 		btnCancel.setBounds(376, 617, 107, 41);
 		frame.getContentPane().add(btnCancel);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(34, 116, 150, 200);
+		frame.getContentPane().add(label);
 		
 		
 	}

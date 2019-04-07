@@ -105,10 +105,6 @@ public class AddPatientData {
 		lblMedicalRecord.setBounds(205, 193, 136, 15);
 		frame.getContentPane().add(lblMedicalRecord);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
-		
 		textField = new JTextField();
 		textField.setBounds(351, 114, 150, 21);
 		frame.getContentPane().add(textField);
@@ -193,5 +189,9 @@ public class AddPatientData {
 		textField_9.setBounds(256, 312, 488, 283);
 		frame.getContentPane().add(textField_9);
 		textField_9.setColumns(10);
+		
+		JLabel label_6 = new JLabel("New label");
+		label_6.setBounds(34, 116, 150, 200);
+		frame.getContentPane().add(label_6);
 	}
 }

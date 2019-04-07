@@ -42,48 +42,12 @@ public class DoctorList {
 		lblDoctorList.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		lblDoctorList.setBounds(453, 39, 185, 60);
 		frame.getContentPane().add(lblDoctorList);
-		
-		JPanel panel_0 = new JPanel();
-		panel_0.setBounds(60, 122, 150, 187);
-		frame.getContentPane().add(panel_0);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(265, 123, 150, 187);
-		frame.getContentPane().add(panel_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(470, 122, 150, 187);
-		frame.getContentPane().add(panel_2);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(672, 122, 150, 187);
-		frame.getContentPane().add(panel_3);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(878, 122, 150, 187);
-		frame.getContentPane().add(panel_4);
-		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBounds(60, 398, 150, 187);
-		frame.getContentPane().add(panel_5);
-		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(265, 398, 150, 187);
-		frame.getContentPane().add(panel_6);
-		
-		JPanel panel_7 = new JPanel();
-		panel_7.setBounds(470, 398, 150, 187);
-		frame.getContentPane().add(panel_7);
 	
 		
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.setVisible(true);
-		
-		JPanel panel_8 = new JPanel();
-		panel_8.setBounds(672, 398, 150, 187);
-		frame.getContentPane().add(panel_8);
 		
 		JButton btn_doctor1 = new JButton("Doctor1");
 		btn_doctor1.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -159,73 +123,44 @@ public class DoctorList {
 
 		frame.getContentPane().add(btnAddDoctor);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(60, 103, 150, 200);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(265, 103, 150, 200);
+		frame.getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("New label");
+		label_1.setBounds(470, 109, 150, 200);
+		frame.getContentPane().add(label_1);
+		
+		JLabel label_2 = new JLabel("New label");
+		label_2.setBounds(672, 103, 150, 200);
+		frame.getContentPane().add(label_2);
+		
+		JLabel label_3 = new JLabel("New label");
+		label_3.setBounds(878, 103, 150, 200);
+		frame.getContentPane().add(label_3);
+		
+		JLabel label_4 = new JLabel("New label");
+		label_4.setBounds(60, 385, 150, 200);
+		frame.getContentPane().add(label_4);
+		
+		JLabel label_5 = new JLabel("New label");
+		label_5.setBounds(265, 385, 150, 200);
+		frame.getContentPane().add(label_5);
+		
+		JLabel label_6 = new JLabel("New label");
+		label_6.setBounds(470, 385, 150, 200);
+		frame.getContentPane().add(label_6);
+		
+		JLabel label_7 = new JLabel("New label");
+		label_7.setBounds(672, 385, 150, 200);
+		frame.getContentPane().add(label_7);
+		
 
 	}
-	
-	/* add doctors from xml */
-//	private void setUpDoctors()
-//	{
-//		
-//	}
-//	
-//	/* add each doctor into panel with doctor vector*/
-//	private void addDoctor()
-//	{
-//		JPanel doctorPanel = new JPanel();
-//		doctorPanel.setLayout(new BorderLayout());
-//		
-//		ImageIcon icon = new ImageIcon("/Users/kylehuang/CCU/Courses/XML/project/Projects/project1_template/img/doctors/dr1.jpeg");
-//    	
-//    	JLabel doctorImage = new JLabel(icon);
-//		doctorPanel.add(
-//				doctorImage
-//				, BorderLayout.NORTH);
-//		
-//		JButton enterProfile = new JButton("Apple jj");
-//		
-//		doctorPanel.add(enterProfile, BorderLayout.CENTER);
-//		
-////		doctorList.add(doctorPanel);
-//		
-//		
-//		
-//		
-//		
-//		
-//		JPanel doctorPanel1 = new JPanel();
-//		doctorPanel1.setLayout(new BorderLayout());
-//		
-//	
-//    	JLabel doctorImage1 = new JLabel(icon);
-//		doctorPanel1.add(
-//				doctorImage1
-//				, BorderLayout.NORTH);
-//		JButton enterProfile1 = new JButton("Apple jj");
-//		
-//		doctorPanel1.add(enterProfile1, BorderLayout.SOUTH);
-//		
-////		doctorList.add(doctorPanel1);
-////		for(Doctor d : doctors)
-////		{
-////			JPanel doctorPanel = new JPanel();
-////			
-////			doctorPanel.add(new DoctorListImagePanel(d.getImageFilePath()));
-////			
-////			JButton enterProfile = new JButton(d.getName() +" " + d.getLastname());
-////			
-////			enterProfile.addActionListener( new ActionListener()
-////			{
-////				@Override
-////				public void actionPerformed(ActionEvent e) {
-////					// enter DoctorData Page
-////					
-////				}
-////			});
-////			doctorPanel.add(enterProfile);
-////		}
-//		
-//	}
-//	
 }
 
 

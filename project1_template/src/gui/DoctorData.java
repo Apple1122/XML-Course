@@ -97,10 +97,6 @@ public class DoctorData {
 		lblDoctorLastname.setBounds(205, 142, 142, 23);
 		frame.getContentPane().add(lblDoctorLastname);
 		
-		Panel panel = new Panel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
-		
 		JLabel lblSubject = new JLabel("Subject:");
 		lblSubject.setFont(new Font("新細明體", Font.PLAIN, 20));
 		lblSubject.setBounds(234, 175, 85, 23);
@@ -135,5 +131,9 @@ public class DoctorData {
 		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 20));
 		lblNewLabel_3.setBounds(345, 210, 95, 21);
 		frame.getContentPane().add(lblNewLabel_3);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(34, 97, 150, 200);
+		frame.getContentPane().add(label);
 	}
 }

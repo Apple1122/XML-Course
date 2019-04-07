@@ -64,10 +64,6 @@ public class PatientData {
 		lblPatientData.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		lblPatientData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblPatientData);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
 		 
 		JLabel lblPatientFirstname = new JLabel("Patient Firstname:");
 		lblPatientFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -98,6 +94,10 @@ public class PatientData {
 		textField.setBounds(256, 312, 488, 283);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(33, 116, 150, 200);
+		frame.getContentPane().add(label);
 	}
 
 }
