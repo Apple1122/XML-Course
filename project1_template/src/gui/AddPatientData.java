@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddPatientData {
 
@@ -54,14 +56,27 @@ public class AddPatientData {
 		frame.setBounds(100, 100, 1109, 721);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("新細明體", Font.PLAIN, 19));
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorData();
+			}
+		});
 		btnSave.setBounds(256, 617, 105, 41);
 		frame.getContentPane().add(btnSave);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setFont(new Font("新細明體", Font.PLAIN, 20));
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorData();
+			}
+		});
 		btnCancel.setBounds(376, 617, 107, 41);
 		frame.getContentPane().add(btnCancel);
 		
@@ -89,10 +104,6 @@ public class AddPatientData {
 		lblMedicalRecord.setFont(new Font("新細明體", Font.PLAIN, 20));
 		lblMedicalRecord.setBounds(205, 193, 136, 15);
 		frame.getContentPane().add(lblMedicalRecord);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
 		
 		textField = new JTextField();
 		textField.setBounds(351, 114, 150, 21);
@@ -178,5 +189,9 @@ public class AddPatientData {
 		textField_9.setBounds(256, 312, 488, 283);
 		frame.getContentPane().add(textField_9);
 		textField_9.setColumns(10);
+		
+		JLabel label_6 = new JLabel("New label");
+		label_6.setBounds(34, 116, 150, 200);
+		frame.getContentPane().add(label_6);
 	}
 }

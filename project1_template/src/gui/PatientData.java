@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -49,16 +52,18 @@ public class PatientData {
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(428, 636, 85, 23);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorData();
+			}
+		});
 		frame.getContentPane().add(btnBack);
 		
 		JLabel lblPatientData = new JLabel("Patient Data");
 		lblPatientData.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		lblPatientData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblPatientData);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
 		 
 		JLabel lblPatientFirstname = new JLabel("Patient Firstname:");
 		lblPatientFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -89,6 +94,10 @@ public class PatientData {
 		textField.setBounds(256, 312, 488, 283);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(33, 116, 150, 200);
+		frame.getContentPane().add(label);
 	}
 
 }

@@ -41,9 +41,16 @@ public class DoctorData {
 		frame.setBounds(100, 100, 1109, 721);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setFont(new Font("新細明體", Font.PLAIN, 20));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new DoctorList();
+			}
+		});
 		btnBack.setBounds(51, 394, 107, 23);
 		frame.getContentPane().add(btnBack);
 		
@@ -52,6 +59,8 @@ public class DoctorData {
 		btnEditDoctor.setFont(new Font("新細明體", Font.PLAIN, 20));
 		btnEditDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new EditDoctorData();
 			}
 		});
 		btnEditDoctor.setBounds(51, 331, 107, 33);
@@ -65,7 +74,8 @@ public class DoctorData {
 		btnAddPatient.setFont(new Font("新細明體", Font.PLAIN, 20));
 		btnAddPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				frame.setVisible(false);
+				new AddPatientData();
 			}
 		});
 		btnAddPatient.setBounds(377, 612, 107, 48);
@@ -86,10 +96,6 @@ public class DoctorData {
 		lblDoctorLastname.setFont(new Font("新細明體", Font.PLAIN, 20));
 		lblDoctorLastname.setBounds(205, 142, 142, 23);
 		frame.getContentPane().add(lblDoctorLastname);
-		
-		Panel panel = new Panel();
-		panel.setBounds(34, 122, 150, 187);
-		frame.getContentPane().add(panel);
 		
 		JLabel lblSubject = new JLabel("Subject:");
 		lblSubject.setFont(new Font("新細明體", Font.PLAIN, 20));
@@ -125,5 +131,9 @@ public class DoctorData {
 		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 20));
 		lblNewLabel_3.setBounds(345, 210, 95, 21);
 		frame.getContentPane().add(lblNewLabel_3);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(34, 97, 150, 200);
+		frame.getContentPane().add(label);
 	}
 }
