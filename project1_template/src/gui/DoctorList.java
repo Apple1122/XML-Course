@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 public class DoctorList {
 
 	
+	
 	private JFrame frame;
 	
 	public static void main(String [] args)
@@ -52,6 +53,7 @@ public class DoctorList {
 		dlabel_1.setBounds(60, 103, 150, 200);
 		frame.getContentPane().add(dlabel_1);
 		
+		ImageIcon icon = new Image
 		JLabel dlabel_2 = new JLabel("New label");
 		dlabel_2.setBounds(265, 103, 150, 200);
 		frame.getContentPane().add(dlabel_2);
