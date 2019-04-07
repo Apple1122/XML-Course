@@ -1,18 +1,16 @@
 package gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import java.awt.Panel;
-import java.awt.Button;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
 import java.awt.Font;
-import javax.swing.JTextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 
 public class DoctorData {
 
@@ -66,10 +64,6 @@ public class DoctorData {
 		btnEditDoctor.setBounds(51, 331, 107, 33);
 		frame.getContentPane().add(btnEditDoctor);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(214, 264, 567, 304);
-		frame.getContentPane().add(comboBox);
-		
 		JButton btnAddPatient = new JButton("Add");
 		btnAddPatient.setFont(new Font("新細明體", Font.PLAIN, 20));
 		btnAddPatient.addActionListener(new ActionListener() {
@@ -78,33 +72,33 @@ public class DoctorData {
 				new AddPatientData();
 			}
 		});
-		btnAddPatient.setBounds(377, 612, 107, 48);
+		btnAddPatient.setBounds(374, 606, 107, 48);
 		frame.getContentPane().add(btnAddPatient);
 		
 		JLabel lblPatient = new JLabel("Patient");
 		lblPatient.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblPatient.setBounds(494, 614, 95, 44);
+		lblPatient.setBounds(493, 607, 95, 44);
 		frame.getContentPane().add(lblPatient);
 		
-		JLabel lblDoctorFirstname = new JLabel("Doctor Firstname:");
+		JLabel lblDoctorFirstname = new JLabel("Name:");
 		lblDoctorFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblDoctorFirstname.setBounds(205, 111, 143, 21);
+		lblDoctorFirstname.setBounds(258, 111, 95, 21);
 		frame.getContentPane().add(lblDoctorFirstname);
 		
 		
-		JLabel lblDoctorLastname = new JLabel("Doctor Lastname:");
+		JLabel lblDoctorLastname = new JLabel("Last Name:");
 		lblDoctorLastname.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblDoctorLastname.setBounds(205, 142, 142, 23);
+		lblDoctorLastname.setBounds(215, 144, 114, 23);
 		frame.getContentPane().add(lblDoctorLastname);
 		
 		JLabel lblSubject = new JLabel("Subject:");
 		lblSubject.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblSubject.setBounds(234, 175, 85, 23);
+		lblSubject.setBounds(244, 179, 85, 23);
 		frame.getContentPane().add(lblSubject);
 		
 		JLabel lblSex = new JLabel("Sex:");
 		lblSex.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblSex.setBounds(244, 210, 42, 23);
+		lblSex.setBounds(287, 214, 42, 23);
 		frame.getContentPane().add(lblSex);
 		
 		JLabel lblDoctorData = new JLabel("Doctor Data");
@@ -112,28 +106,61 @@ public class DoctorData {
 		lblDoctorData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblDoctorData);
 		
-		JLabel lblNewLabel = new JLabel("CHEN");
+		JLabel lblNewLabel = new JLabel("Johnson");
 		lblNewLabel.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblNewLabel.setBounds(345, 111, 170, 21);
+		lblNewLabel.setBounds(390, 111, 170, 21);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("JOHNSON");
+		JLabel lblNewLabel_1 = new JLabel("CHEN");
 		lblNewLabel_1.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(345, 142, 95, 21);
+		lblNewLabel_1.setBounds(390, 145, 95, 21);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("DICK");
 		lblNewLabel_2.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(345, 175, 78, 21);
+		lblNewLabel_2.setBounds(390, 180, 78, 21);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("M");
 		lblNewLabel_3.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(345, 210, 95, 21);
+		lblNewLabel_3.setBounds(389, 215, 95, 21);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JLabel label = new JLabel("New label");
 		label.setBounds(34, 97, 150, 200);
 		frame.getContentPane().add(label);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		btnDelete.setBounds(587, 606, 107, 48);
+		btnDelete.setVisible(false);
+		frame.getContentPane().add(btnDelete);
+		
+		
+		
+		
+		DefaultListModel model = new DefaultListModel();
+	    JList list = new JList(model);
+	    
+		String[] items = { "A", "B", "C", "D" };
+		for (int i = 0; i < items.length; i++) {
+			model.add(i, items[i]);
+		}
+		
+		list.addMouseListener(new MouseAdapter() 
+		{
+			public void mouseClicked(MouseEvent mouseEvent) 
+			{
+				if(mouseEvent.getClickCount() == 2) 
+				{
+					btnDelete.setVisible(true);
+				}
+			}
+		});
+		
+		list.setBounds(244, 276, 479, 278);
+		frame.getContentPane().add(list);
+		
+		
 	}
 }

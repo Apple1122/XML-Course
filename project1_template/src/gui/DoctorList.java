@@ -38,22 +38,61 @@ public class DoctorList {
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
-		JLabel lblDoctorList = new JLabel("Doctor List");
-		lblDoctorList.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-		lblDoctorList.setBounds(453, 39, 185, 60);
-		frame.getContentPane().add(lblDoctorList);
-	
-		
+		JLabel title = new JLabel("Doctor List");
+		title.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+		title.setBounds(453, 39, 185, 60);
+		frame.getContentPane().add(title);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
         frame.setVisible(true);
+        
+        ImageIcon icon = new ImageIcon("/Users/kylehuang/CCU/Courses/XML/project/XML-Course/project1_template/bin/img/person.png");
+        
+		JLabel dlabel_1 = new JLabel(icon);
+		dlabel_1.setBounds(60, 103, 150, 200);
+		frame.getContentPane().add(dlabel_1);
+		
+		JLabel dlabel_2 = new JLabel("New label");
+		dlabel_2.setBounds(265, 103, 150, 200);
+		frame.getContentPane().add(dlabel_2);
+		
+		JLabel dlabel_3 = new JLabel("New label");
+		dlabel_3.setBounds(470, 109, 150, 200);
+		frame.getContentPane().add(dlabel_3);
+		
+		JLabel dlabel_4 = new JLabel("New label");
+		dlabel_4.setBounds(672, 103, 150, 200);
+		frame.getContentPane().add(dlabel_4);
+		
+		JLabel dlabel_5 = new JLabel("New label");
+		dlabel_5.setBounds(878, 103, 150, 200);
+		frame.getContentPane().add(dlabel_5);
+		
+		JLabel dlabel_6 = new JLabel("New label");
+		dlabel_6.setBounds(60, 385, 150, 200);
+		frame.getContentPane().add(dlabel_6);
+		
+		JLabel dlabel_7 = new JLabel("New label");
+		dlabel_7.setBounds(265, 385, 150, 200);
+		frame.getContentPane().add(dlabel_7);
+		
+		JLabel dlabel_8 = new JLabel("New label");
+		dlabel_8.setBounds(470, 385, 150, 200);
+		frame.getContentPane().add(dlabel_8);
+		
+		JLabel dlabel_9 = new JLabel("New label");
+		dlabel_9.setBounds(672, 385, 150, 200);
+		frame.getContentPane().add(dlabel_9);
+		
+
+        
+        
+        
 		
 		JButton btn_doctor1 = new JButton("Doctor1");
 		btn_doctor1.setFont(new Font("新細明體", Font.PLAIN, 20));
 		btn_doctor1.setBounds(60, 332, 150, 43);
 		btn_doctor1.setActionCommand("d1");
-		
 		btn_doctor1.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent ae)
@@ -121,42 +160,6 @@ public class DoctorList {
 		
 
 		frame.getContentPane().add(btnAddDoctor);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(60, 103, 150, 200);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel label = new JLabel("New label");
-		label.setBounds(265, 103, 150, 200);
-		frame.getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("New label");
-		label_1.setBounds(470, 109, 150, 200);
-		frame.getContentPane().add(label_1);
-		
-		JLabel label_2 = new JLabel("New label");
-		label_2.setBounds(672, 103, 150, 200);
-		frame.getContentPane().add(label_2);
-		
-		JLabel label_3 = new JLabel("New label");
-		label_3.setBounds(878, 103, 150, 200);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("New label");
-		label_4.setBounds(60, 385, 150, 200);
-		frame.getContentPane().add(label_4);
-		
-		JLabel label_5 = new JLabel("New label");
-		label_5.setBounds(265, 385, 150, 200);
-		frame.getContentPane().add(label_5);
-		
-		JLabel label_6 = new JLabel("New label");
-		label_6.setBounds(470, 385, 150, 200);
-		frame.getContentPane().add(label_6);
-		
-		JLabel label_7 = new JLabel("New label");
-		label_7.setBounds(672, 385, 150, 200);
-		frame.getContentPane().add(label_7);
 		
 
 	}
