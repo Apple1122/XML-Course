@@ -17,33 +17,14 @@ public class PatientData {
 	private JFrame frame;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PatientData window = new PatientData();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public PatientData() {
-		initialize();
+	public PatientData(int index) {
+		initialize(index);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int index) {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		frame.setBounds(100, 100, 1109, 721);
@@ -55,7 +36,7 @@ public class PatientData {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new DoctorData();
+				new DoctorData(index);
 			}
 		});
 		frame.getContentPane().add(btnBack);
@@ -66,27 +47,27 @@ public class PatientData {
 		frame.getContentPane().add(lblPatientData);
 		 
 		JLabel lblPatientFirstname = new JLabel("Patient Firstname:");
-		lblPatientFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblPatientFirstname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblPatientFirstname.setBounds(205, 111, 143, 21);
 		frame.getContentPane().add(lblPatientFirstname);
 		
 		JLabel lblPatientLastname = new JLabel("Patient Lastname:");
-		lblPatientLastname.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblPatientLastname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblPatientLastname.setBounds(205, 142, 143, 16);
 		frame.getContentPane().add(lblPatientLastname);
 		
 		JLabel lblDisease = new JLabel("Disease:");
-		lblDisease.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblDisease.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblDisease.setBounds(226, 168, 85, 15);
 		frame.getContentPane().add(lblDisease);
 		
 		JLabel lblMedicalRecord = new JLabel("Medical Record:");
-		lblMedicalRecord.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblMedicalRecord.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblMedicalRecord.setBounds(205, 193, 136, 15);
 		frame.getContentPane().add(lblMedicalRecord);
 		
 		JLabel lblNote = new JLabel("Note");
-		lblNote.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNote.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNote.setBounds(256, 280, 70, 28);
 		frame.getContentPane().add(lblNote);
 		

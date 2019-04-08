@@ -25,33 +25,15 @@ public class AddPatientData {
 	private JTextField textField_8;
 	private JTextField textField_9;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddPatientData window = new AddPatientData();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public AddPatientData() {
-		initialize();
+	
+	public AddPatientData(int index) {
+		initialize(index);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int index) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1109, 721);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,22 +41,24 @@ public class AddPatientData {
 		frame.setVisible(true);
 		
 		JButton btnSave = new JButton("Save");
-		btnSave.setFont(new Font("新細明體", Font.PLAIN, 19));
+		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				new DoctorData();
+				DoctorList.openVisible();
+				frame.dispose();
 			}
 		});
+		
 		btnSave.setBounds(256, 617, 105, 41);
 		frame.getContentPane().add(btnSave);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setFont(new Font("新細明體", Font.PLAIN, 20));
+		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				new DoctorData();
+				DoctorList.openVisible();
+				frame.dispose();
 			}
 		});
 		btnCancel.setBounds(376, 617, 107, 41);
@@ -86,22 +70,22 @@ public class AddPatientData {
 		frame.getContentPane().add(lblAddPatientData);
 		
 		JLabel lblPatientFirstname = new JLabel("Patient Firstname:");
-		lblPatientFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblPatientFirstname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblPatientFirstname.setBounds(205, 111, 143, 21);
 		frame.getContentPane().add(lblPatientFirstname);
 		
 		JLabel lblPatientLastname = new JLabel("Patient Lastname:");
-		lblPatientLastname.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblPatientLastname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblPatientLastname.setBounds(205, 142, 143, 16);
 		frame.getContentPane().add(lblPatientLastname);
 		
 		JLabel lblDisease = new JLabel("Disease:");
-		lblDisease.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblDisease.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblDisease.setBounds(226, 168, 85, 15);
 		frame.getContentPane().add(lblDisease);
 		
 		JLabel lblMedicalRecord = new JLabel("Medical Record:");
-		lblMedicalRecord.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblMedicalRecord.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblMedicalRecord.setBounds(205, 193, 136, 15);
 		frame.getContentPane().add(lblMedicalRecord);
 		
@@ -126,7 +110,7 @@ public class AddPatientData {
 		textField_3.setColumns(10);
 		
 		JLabel lblNote = new JLabel("Note");
-		lblNote.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblNote.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNote.setBounds(256, 280, 70, 28);
 		frame.getContentPane().add(lblNote);
 		
@@ -156,32 +140,32 @@ public class AddPatientData {
 		textField_8.setColumns(10);
 		
 		JLabel label = new JLabel("3.");
-		label.setFont(new Font("新細明體", Font.PLAIN, 20));
+		label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label.setBounds(340, 218, 22, 21);
 		frame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("1.");
-		label_1.setFont(new Font("新細明體", Font.PLAIN, 20));
+		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label_1.setBounds(340, 195, 46, 15);
 		frame.getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("5.");
-		label_2.setFont(new Font("新細明體", Font.PLAIN, 20));
+		label_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label_2.setBounds(340, 249, 46, 21);
 		frame.getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("2.");
-		label_3.setFont(new Font("新細明體", Font.PLAIN, 20));
+		label_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label_3.setBounds(523, 192, 46, 16);
 		frame.getContentPane().add(label_3);
 		
 		JLabel label_4 = new JLabel("4.");
-		label_4.setFont(new Font("新細明體", Font.PLAIN, 20));
+		label_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label_4.setBounds(523, 222, 46, 15);
 		frame.getContentPane().add(label_4);
 		
 		JLabel label_5 = new JLabel("6.");
-		label_5.setFont(new Font("新細明體", Font.PLAIN, 20));
+		label_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label_5.setBounds(523, 247, 46, 21);
 		frame.getContentPane().add(label_5);
 		

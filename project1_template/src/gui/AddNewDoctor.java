@@ -7,32 +7,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
 
 public class AddNewDoctor {
 
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddNewDoctor window = new AddNewDoctor();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	// JFileChooser can upload file(photo)
+	
 	/**
 	 * Create the application.
 	 */
@@ -49,34 +40,35 @@ public class AddNewDoctor {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblEditDoctorData = new JLabel("Edit Doctor Data");
-		lblEditDoctorData.setFont(new Font("Times New Roman", Font.PLAIN, 40));
-		lblEditDoctorData.setBounds(34, 43, 292, 33);
-		frame.getContentPane().add(lblEditDoctorData);
+		JLabel title = new JLabel("Add Doctor Data");
+		title.setFont(new Font("Times New Roman", Font.PLAIN, 40));
+		title.setBounds(34, 43, 292, 33);
+		frame.getContentPane().add(title);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(34, 122, 150, 187);
 		frame.getContentPane().add(panel);
 		
-		JLabel lblDoctorFirstname = new JLabel("Doctor Firstname:");
-		lblDoctorFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblDoctorFirstname.setBounds(205, 111, 143, 21);
-		frame.getContentPane().add(lblDoctorFirstname);
+		JLabel doctorName = new JLabel("Name:");
+		doctorName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		doctorName.setBounds(258, 111, 95, 21);
+		frame.getContentPane().add(doctorName);
 		
-		JLabel lblDoctorLastname = new JLabel("Doctor Lastname:");
-		lblDoctorLastname.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblDoctorLastname.setBounds(205, 142, 143, 16);
-		frame.getContentPane().add(lblDoctorLastname);
 		
-		JLabel lblSubject = new JLabel("Subject:");
-		lblSubject.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblSubject.setBounds(234, 175, 85, 23);
-		frame.getContentPane().add(lblSubject);
+		JLabel doctorLastName = new JLabel("Last Name:");
+		doctorLastName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		doctorLastName.setBounds(215, 144, 114, 23);
+		frame.getContentPane().add(doctorLastName);
 		
-		JLabel lblSex = new JLabel("Sex:");
-		lblSex.setFont(new Font("新細明體", Font.PLAIN, 20));
-		lblSex.setBounds(244, 210, 42, 23);
-		frame.getContentPane().add(lblSex);
+		JLabel doctorSubject = new JLabel("Subject:");
+		doctorSubject.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		doctorSubject.setBounds(244, 179, 85, 23);
+		frame.getContentPane().add(doctorSubject);
+		
+		JLabel doctorGender = new JLabel("Gender:");
+		doctorGender.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		doctorGender.setBounds(254, 214, 75, 23);
+		frame.getContentPane().add(doctorGender);
 		
 		textField = new JTextField();
 		textField.setBounds(351, 114, 150, 21);
@@ -88,17 +80,44 @@ public class AddNewDoctor {
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(351, 199, 150, 21);
-		frame.getContentPane().add(textField_2);
-		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
 		textField_3.setBounds(351, 173, 150, 21);
 		frame.getContentPane().add(textField_3);
 		
+		JRadioButton maleRadioButton = new JRadioButton("Man");
+		maleRadioButton.setBounds(349, 214, 58, 23);
+		maleRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		frame.getContentPane().add(maleRadioButton);
+		
+		JRadioButton femaleRadioButton = new JRadioButton("Female");
+		femaleRadioButton.setBounds(419, 214, 76, 23);
+		femaleRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		frame.getContentPane().add(femaleRadioButton);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setBounds(258, 497, 123, 41);
+		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DoctorList.openVisible();
+				frame.dispose();
+			}
+		});
+		frame.getContentPane().add(btnSave);
+		
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnCancel.setBounds(419, 497, 107, 41);
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DoctorList.openVisible();
+				frame.dispose();
+			}
+		});
+		frame.getContentPane().add(btnCancel);
+		
 		
 	}
-
 }

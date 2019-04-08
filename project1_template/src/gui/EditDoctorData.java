@@ -40,14 +40,14 @@ public class EditDoctorData {
 	/**
 	 * Create the application.
 	 */
-	public EditDoctorData() {
-		initialize();
+	public EditDoctorData(int index) {
+		initialize(index);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(int index) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1109, 721);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -102,8 +102,8 @@ public class EditDoctorData {
 		btnSave.setFont(new Font("新細明體", Font.PLAIN, 19));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				new DoctorList();
+				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		btnSave.setBounds(256, 617, 105, 41);
@@ -113,8 +113,8 @@ public class EditDoctorData {
 		btnCancel.setFont(new Font("新細明體", Font.PLAIN, 20));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				new DoctorList();
+				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		btnCancel.setBounds(376, 617, 107, 41);
