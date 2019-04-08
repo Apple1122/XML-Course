@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+
 public class Doctor {
 
 	private String name;
@@ -8,6 +10,7 @@ public class Doctor {
 	private String photoPath;
 	private String gender;
 	private String lastLoginTime;
+	private ArrayList<Patient> patients;
 	
 	
 	
@@ -67,9 +70,22 @@ public class Doctor {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
-	
-	
+
+	public String getLastLoginTime() {
+		return lastLoginTime;
+	}
+
+	public void setLastLoginTime(String lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
+
+	public ArrayList<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(ArrayList<Patient> patients) {
+		this.patients = patients;
+	}
 	
 	
 }
