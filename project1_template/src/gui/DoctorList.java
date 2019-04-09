@@ -56,15 +56,12 @@ public class DoctorList {
         
 		JButton btnAddDoctor = new JButton("Add Doctor");
 		btnAddDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-
-		btnAddDoctor.setBounds(878, 439, 179, 107);
-
 		btnAddDoctor.setBounds(899, 456, 129, 83);
 		btnAddDoctor.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent ae)
 			{
-				new EditDoctorData();
+				new AddNewDoctor();
 			}
 		});
 		frame.getContentPane().add(btnAddDoctor);
