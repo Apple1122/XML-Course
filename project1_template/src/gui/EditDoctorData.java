@@ -59,22 +59,22 @@ public class EditDoctorData {
 		frame.getContentPane().add(lblEditDoctorData);
 		
 		JLabel lblDoctorFirstname = new JLabel("Doctor Firstname:");
-		lblDoctorFirstname.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblDoctorFirstname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblDoctorFirstname.setBounds(205, 111, 143, 21);
 		frame.getContentPane().add(lblDoctorFirstname);
 		
 		JLabel lblDoctorLastname = new JLabel("Doctor Lastname:");
-		lblDoctorLastname.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblDoctorLastname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblDoctorLastname.setBounds(205, 142, 143, 16);
 		frame.getContentPane().add(lblDoctorLastname);
 		
 		JLabel lblSubject = new JLabel("Subject:");
-		lblSubject.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblSubject.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblSubject.setBounds(234, 175, 85, 23);
 		frame.getContentPane().add(lblSubject);
 		
 		JLabel lblSex = new JLabel("Sex:");
-		lblSex.setFont(new Font("新細明體", Font.PLAIN, 20));
+		lblSex.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblSex.setBounds(244, 210, 42, 23);
 		frame.getContentPane().add(lblSex);
 		
@@ -99,7 +99,7 @@ public class EditDoctorData {
 		frame.getContentPane().add(textField_3);
 		
 		JButton btnSave = new JButton("Save");
-		btnSave.setFont(new Font("新細明體", Font.PLAIN, 19));
+		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -110,7 +110,7 @@ public class EditDoctorData {
 		frame.getContentPane().add(btnSave);
 		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setFont(new Font("新細明體", Font.PLAIN, 20));
+		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

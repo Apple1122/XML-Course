@@ -19,6 +19,7 @@ public class DoctorList {
 	private static JFrame frame;
 	private JLabel[] labels;
 	private JButton[] buttons;
+	private static int countDoctor;
 	
 	public static void main(String [] args)
 	{
@@ -28,6 +29,7 @@ public class DoctorList {
 	/* constructor */
 	public DoctorList()
 	{
+		countDoctor = CreateXML.doctorList.size();
 		initialize();
 	}
 	
@@ -56,23 +58,25 @@ public class DoctorList {
         
 		JButton btnAddDoctor = new JButton("Add Doctor");
 		btnAddDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnAddDoctor.setBounds(899, 456, 129, 83);
+		btnAddDoctor.setBounds(899, 456, 129, 71);
 		btnAddDoctor.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent ae)
 			{
-				new AddNewDoctor();
+				frame.setVisible(false);
+				new AddNewDoctor(countDoctor);
 			}
 		});
 		frame.getContentPane().add(btnAddDoctor);
 		
 		JButton btnDeleteDoctor = new JButton("Delete Doctor");
-		btnDeleteDoctor.setBounds(899, 581, 117, 29);
+		btnDeleteDoctor.setBounds(899, 559, 129, 71);
 		btnDeleteDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnDeleteDoctor.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent ae)
 			{
+				frame.setVisible(false);
 				new DeleteDoctorPage();
 			}
 		});
@@ -292,6 +296,9 @@ public class DoctorList {
 	public static void openVisible()
 	{
 		frame.setVisible(true);
+		
+		// recount how many doctor we have 
+		countDoctor = CreateXML.doctorList.size();
 		
 		// https://stackoverflow.com/questions/3718435/refresh-jframe-after-adding-new-components
 		// http://www.java2s.com/Questions_And_Answers/Swing/JFrame/Refresh.htm

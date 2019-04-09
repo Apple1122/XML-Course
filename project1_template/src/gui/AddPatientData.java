@@ -25,8 +25,14 @@ public class AddPatientData {
 	private JTextField textField_8;
 	private JTextField textField_9;
 
+	/* for AddNewDoctor.class */
+	public AddPatientData()
+	{
+		initialize();
+	}
 	
-	public AddPatientData(int index) {
+	public AddPatientData(int index) 
+	{
 		initialize(index);
 	}
 
