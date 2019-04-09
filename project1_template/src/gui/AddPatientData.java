@@ -28,7 +28,7 @@ public class AddPatientData {
 	/* for AddNewDoctor.class */
 	public AddPatientData()
 	{
-		initialize();
+//		initialize();
 	}
 	
 	public AddPatientData(int index) 
