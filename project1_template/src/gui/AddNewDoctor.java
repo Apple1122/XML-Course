@@ -144,8 +144,8 @@ public class AddNewDoctor {
 						textField_subject.getText(),
 						group.getSelection().getActionCommand()));
 
-				DoctorList.openVisible();
 				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		frame.getContentPane().add(btnSave);
@@ -157,9 +157,10 @@ public class AddNewDoctor {
 		btnCancel.setVisible(true);
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				DoctorList.openVisible();
+			public void actionPerformed(ActionEvent e) 
+			{
 				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		frame.getContentPane().add(btnCancel);

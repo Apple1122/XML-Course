@@ -47,9 +47,10 @@ public class DoctorData {
 		btnBack.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnBack.setBounds(51, 394, 107, 23);
 		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DoctorList.openVisible();
+			public void actionPerformed(ActionEvent e) 
+			{
 				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		frame.getContentPane().add(btnBack);
@@ -59,9 +60,10 @@ public class DoctorData {
 		btnEditDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnEditDoctor.setBounds(51, 331, 107, 33);
 		btnEditDoctor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new EditDoctorData(index);
+			public void actionPerformed(ActionEvent e) 
+			{
 				frame.dispose();
+				new EditDoctorData(index);
 			}
 		});
 		frame.getContentPane().add(btnEditDoctor);
@@ -180,8 +182,8 @@ public class DoctorData {
 					btnEnter.setVisible(true);
 					btnEnter.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							new PatientData(id);
 							frame.dispose();
+							new PatientData(id);
 						}
 					});
 					
@@ -210,8 +212,8 @@ public class DoctorData {
 		btnAddPatient.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnAddPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AddPatientData(index);
 				frame.dispose();
+				new AddPatientData(index);
 			}
 		});
 		frame.getContentPane().add(btnAddPatient);

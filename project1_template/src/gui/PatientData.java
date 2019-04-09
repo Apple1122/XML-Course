@@ -35,7 +35,7 @@ public class PatientData {
 		btnBack.setBounds(428, 636, 85, 23);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				frame.dispose();
 				new DoctorData(index);
 			}
 		});

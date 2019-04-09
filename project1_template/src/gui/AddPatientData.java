@@ -50,9 +50,10 @@ public class AddPatientData {
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		
 		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DoctorList.openVisible();
+			public void actionPerformed(ActionEvent e) 
+			{
 				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		
@@ -62,9 +63,10 @@ public class AddPatientData {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DoctorList.openVisible();
+			public void actionPerformed(ActionEvent e) 
+			{
 				frame.dispose();
+				DoctorList.openVisible();
 			}
 		});
 		btnCancel.setBounds(376, 617, 107, 41);

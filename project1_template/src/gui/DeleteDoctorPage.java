@@ -52,10 +52,10 @@ public class DeleteDoctorPage {
 		DefaultListModel model = new DefaultListModel();
 		JList list = new JList(model);
 		int count = 1;
-		for(Doctor doctor : CreateXML.doctorList)
-		{
-			model.add(count++, doctor.getName() + " " + doctor.getLastName());
-		}
+//		for(Doctor doctor : CreateXML.doctorList)
+//		{
+//			model.add(count++, doctor.getName() + " " + doctor.getLastName());
+//		}
 		list.setBounds(52, 440, 542, -331);
 		list.addMouseListener(new MouseAdapter() 
 		{
@@ -89,8 +89,8 @@ public class DeleteDoctorPage {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				DoctorList.openVisible();
 				frame.dispose();
+				DoctorList.openVisible();
 			}
 			
 		});
