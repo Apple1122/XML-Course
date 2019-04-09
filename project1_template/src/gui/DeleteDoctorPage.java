@@ -36,17 +36,12 @@ public class DeleteDoctorPage {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1109, 721);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(113, 151, 641, 531);
 		panel.setLayout(null);
 		frame.getContentPane().add(panel);
-		
-		JLabel label_title = new JLabel();
-		label_title.setBounds(52, 22, 548, 87);
-		label_title.setText("Please double click on the doctor which you want to delete!");
-		label_title.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		panel.add(label_title);
 		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setBounds(777, 595, 174, 29);
@@ -100,6 +95,12 @@ public class DeleteDoctorPage {
 			
 		});
 		frame.getContentPane().add(btnBack);
+		
+		JLabel label_title = new JLabel();
+		label_title.setBounds(166, 82, 548, 63);
+		frame.getContentPane().add(label_title);
+		label_title.setText("Please double click on the doctor which you want to delete!");
+		label_title.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
 	
 		
