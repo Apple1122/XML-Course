@@ -1,4 +1,4 @@
-package hw2;
+package hw3;
 
 import java.io.FileWriter;
 import java.io.IOException;
