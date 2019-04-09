@@ -29,7 +29,7 @@ public class DoctorList {
 	/* constructor */
 	public DoctorList()
 	{
-		countDoctor = CreateXML.doctorList.size();
+//		countDoctor = CreateXML.doctorList.size();
 		initialize();
 	}
 	
