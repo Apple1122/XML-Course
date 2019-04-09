@@ -71,23 +71,23 @@ public class DoctorData {
 		
 		JLabel doctorName = new JLabel("Name:");
 		doctorName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		doctorName.setBounds(258, 111, 95, 21);
+		doctorName.setBounds(244, 111, 95, 21);
 		frame.getContentPane().add(doctorName);
 		
 		
 		JLabel doctorLastName = new JLabel("Last Name:");
 		doctorLastName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		doctorLastName.setBounds(215, 144, 114, 23);
+		doctorLastName.setBounds(244, 142, 114, 23);
 		frame.getContentPane().add(doctorLastName);
 		
 		JLabel doctorSubject = new JLabel("Subject:");
 		doctorSubject.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		doctorSubject.setBounds(244, 179, 85, 23);
+		doctorSubject.setBounds(244, 175, 85, 23);
 		frame.getContentPane().add(doctorSubject);
 		
 		JLabel doctorGender = new JLabel("Gender:");
 		doctorGender.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		doctorGender.setBounds(258, 214, 71, 23);
+		doctorGender.setBounds(244, 208, 71, 23);
 		frame.getContentPane().add(doctorGender);
 		
 		JLabel lblDoctorData = new JLabel("Doctor Data");
@@ -115,7 +115,7 @@ public class DoctorData {
 		JLabel label_gender = new JLabel();
 		label_gender.setHorizontalAlignment(SwingConstants.LEADING);
 		label_gender.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_gender.setBounds(389, 215, 95, 21);
+		label_gender.setBounds(390, 209, 95, 21);
 		frame.getContentPane().add(label_gender);
 		
 		JLabel label_photo = new JLabel();
@@ -202,7 +202,7 @@ public class DoctorData {
 			}
 		});
 		
-		list.setBounds(244, 276, 479, 278);
+		list.setBounds(244, 275, 479, 278);
 		frame.getContentPane().add(list);
 		
 		JButton btnAddPatient = new JButton("Add Patient");
@@ -215,6 +215,11 @@ public class DoctorData {
 			}
 		});
 		frame.getContentPane().add(btnAddPatient);
+		
+		JLabel lblLastLoginTime = new JLabel("Last Login Time:");
+		lblLastLoginTime.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblLastLoginTime.setBounds(244, 246, 158, 19);
+		frame.getContentPane().add(lblLastLoginTime);
 		
 		
 

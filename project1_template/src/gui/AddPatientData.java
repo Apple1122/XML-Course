@@ -19,11 +19,10 @@ public class AddPatientData {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
 	private JTextField textField_9;
+	private JTextField textField_5;
 
 	/* for AddNewDoctor.class */
 	public AddPatientData()
@@ -31,6 +30,9 @@ public class AddPatientData {
 //		initialize();
 	}
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public AddPatientData(int index) 
 	{
 		initialize(index);
@@ -87,7 +89,7 @@ public class AddPatientData {
 		
 		JLabel lblDisease = new JLabel("Disease:");
 		lblDisease.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblDisease.setBounds(226, 168, 85, 15);
+		lblDisease.setBounds(205, 168, 85, 15);
 		frame.getContentPane().add(lblDisease);
 		
 		JLabel lblMedicalRecord = new JLabel("Medical Record:");
@@ -125,11 +127,6 @@ public class AddPatientData {
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(351, 252, 150, 21);
-		frame.getContentPane().add(textField_5);
-		textField_5.setColumns(10);
-		
 		textField_6 = new JTextField();
 		textField_6.setBounds(543, 192, 150, 21);
 		frame.getContentPane().add(textField_6);
@@ -139,11 +136,6 @@ public class AddPatientData {
 		textField_7.setBounds(543, 221, 150, 21);
 		frame.getContentPane().add(textField_7);
 		textField_7.setColumns(10);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(543, 252, 150, 21);
-		frame.getContentPane().add(textField_8);
-		textField_8.setColumns(10);
 		
 		JLabel label = new JLabel("3.");
 		label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -155,11 +147,6 @@ public class AddPatientData {
 		label_1.setBounds(340, 195, 46, 15);
 		frame.getContentPane().add(label_1);
 		
-		JLabel label_2 = new JLabel("5.");
-		label_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_2.setBounds(340, 249, 46, 21);
-		frame.getContentPane().add(label_2);
-		
 		JLabel label_3 = new JLabel("2.");
 		label_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		label_3.setBounds(523, 192, 46, 16);
@@ -170,11 +157,6 @@ public class AddPatientData {
 		label_4.setBounds(523, 222, 46, 15);
 		frame.getContentPane().add(label_4);
 		
-		JLabel label_5 = new JLabel("6.");
-		label_5.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_5.setBounds(523, 247, 46, 21);
-		frame.getContentPane().add(label_5);
-		
 		textField_9 = new JTextField();
 		textField_9.setBounds(256, 312, 488, 283);
 		frame.getContentPane().add(textField_9);
@@ -183,5 +165,15 @@ public class AddPatientData {
 		JLabel label_6 = new JLabel("New label");
 		label_6.setBounds(34, 116, 150, 200);
 		frame.getContentPane().add(label_6);
+		
+		JLabel label_2 = new JLabel("Gender:");
+		label_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		label_2.setBounds(205, 256, 95, 15);
+		frame.getContentPane().add(label_2);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(350, 252, 96, 21);
+		frame.getContentPane().add(textField_5);
+		textField_5.setColumns(10);
 	}
 }

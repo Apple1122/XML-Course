@@ -46,7 +46,7 @@ public class PatientData {
 		lblPatientData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblPatientData);
 		 
-		JLabel lblPatientFirstname = new JLabel("Patient Firstname:");
+		JLabel lblPatientFirstname = new JLabel("Patient Name:");
 		lblPatientFirstname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblPatientFirstname.setBounds(205, 111, 143, 21);
 		frame.getContentPane().add(lblPatientFirstname);
@@ -58,7 +58,7 @@ public class PatientData {
 		
 		JLabel lblDisease = new JLabel("Disease:");
 		lblDisease.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblDisease.setBounds(226, 168, 85, 15);
+		lblDisease.setBounds(205, 168, 85, 15);
 		frame.getContentPane().add(lblDisease);
 		
 		JLabel lblMedicalRecord = new JLabel("Medical Record:");
@@ -79,6 +79,11 @@ public class PatientData {
 		JLabel label = new JLabel("New label");
 		label.setBounds(33, 116, 150, 200);
 		frame.getContentPane().add(label);
+		
+		JLabel lblGender = new JLabel("Gender:");
+		lblGender.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblGender.setBounds(205, 220, 95, 15);
+		frame.getContentPane().add(lblGender);
 	}
 
 }

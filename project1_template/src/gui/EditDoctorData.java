@@ -58,24 +58,24 @@ public class EditDoctorData {
 		lblEditDoctorData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblEditDoctorData);
 		
-		JLabel lblDoctorFirstname = new JLabel("Doctor Firstname:");
+		JLabel lblDoctorFirstname = new JLabel("Doctor name:");
 		lblDoctorFirstname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblDoctorFirstname.setBounds(205, 111, 143, 21);
 		frame.getContentPane().add(lblDoctorFirstname);
 		
 		JLabel lblDoctorLastname = new JLabel("Doctor Lastname:");
 		lblDoctorLastname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblDoctorLastname.setBounds(205, 142, 143, 16);
+		lblDoctorLastname.setBounds(201, 142, 180, 16);
 		frame.getContentPane().add(lblDoctorLastname);
 		
 		JLabel lblSubject = new JLabel("Subject:");
 		lblSubject.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblSubject.setBounds(234, 175, 85, 23);
+		lblSubject.setBounds(205, 177, 85, 23);
 		frame.getContentPane().add(lblSubject);
 		
-		JLabel lblSex = new JLabel("Sex:");
+		JLabel lblSex = new JLabel("Gender:");
 		lblSex.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblSex.setBounds(244, 210, 42, 23);
+		lblSex.setBounds(205, 210, 70, 23);
 		frame.getContentPane().add(lblSex);
 		
 		textField = new JTextField();
@@ -90,12 +90,12 @@ public class EditDoctorData {
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(351, 199, 150, 21);
+		textField_2.setBounds(351, 214, 150, 21);
 		frame.getContentPane().add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(351, 173, 150, 21);
+		textField_3.setBounds(351, 179, 150, 21);
 		frame.getContentPane().add(textField_3);
 		
 		JButton btnSave = new JButton("Save");
