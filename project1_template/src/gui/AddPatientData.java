@@ -1,29 +1,36 @@
 package gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import data.Patient;
+import xml.PatientXmlRW;
 
 public class AddPatientData {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_9;
-	private JTextField textField_5;
+	private JTextField text_name;
+	private JTextField text_lastName;
+	private JTextField text_disease;
+	private JTextField text_record1;
+	private JTextField text_record3;
+	private JTextField text_record2;
+	private JTextField text_record4;
+	private JTextField text_note;
 
+	private PatientXmlRW patientXmlRW;
+	private ArrayList<Patient> patients;
+	
+	
 	/* for AddNewDoctor.class */
 	public AddPatientData()
 	{
@@ -33,61 +40,37 @@ public class AddPatientData {
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public AddPatientData(int index) 
+	public AddPatientData(int doctorId) 
 	{
-		initialize(index);
+		initialize(doctorId);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int index) {
+	private void initialize(int doctorId) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1109, 721);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
-		JButton btnSave = new JButton("Save");
-		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
-				frame.dispose();
-				DoctorList.openVisible();
-			}
-		});
 		
-		btnSave.setBounds(256, 617, 105, 41);
-		frame.getContentPane().add(btnSave);
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
-				frame.dispose();
-				DoctorList.openVisible();
-			}
-		});
-		btnCancel.setBounds(376, 617, 107, 41);
-		frame.getContentPane().add(btnCancel);
-		
-		JLabel lblAddPatientData = new JLabel("Add patient Data");
+		JLabel lblAddPatientData = new JLabel("Add Patient Data");
 		lblAddPatientData.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		lblAddPatientData.setBounds(34, 43, 292, 33);
 		frame.getContentPane().add(lblAddPatientData);
 		
-		JLabel lblPatientFirstname = new JLabel("Patient Firstname:");
-		lblPatientFirstname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblPatientFirstname.setBounds(205, 111, 143, 21);
-		frame.getContentPane().add(lblPatientFirstname);
+		JLabel lblName = new JLabel("Name:");
+		lblName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblName.setBounds(205, 111, 143, 21);
+		frame.getContentPane().add(lblName);
 		
-		JLabel lblPatientLastname = new JLabel("Patient Lastname:");
-		lblPatientLastname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblPatientLastname.setBounds(205, 142, 143, 16);
-		frame.getContentPane().add(lblPatientLastname);
+		JLabel lblLastname = new JLabel("Lastname:");
+		lblLastname.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblLastname.setBounds(205, 142, 143, 16);
+		frame.getContentPane().add(lblLastname);
 		
 		JLabel lblDisease = new JLabel("Disease:");
 		lblDisease.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -99,45 +82,45 @@ public class AddPatientData {
 		lblMedicalRecord.setBounds(205, 193, 136, 15);
 		frame.getContentPane().add(lblMedicalRecord);
 		
-		textField = new JTextField();
-		textField.setBounds(351, 114, 150, 21);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		text_name = new JTextField();
+		text_name.setBounds(351, 114, 150, 21);
+		frame.getContentPane().add(text_name);
+		text_name.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(351, 139, 150, 21);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		text_lastName = new JTextField();
+		text_lastName.setBounds(351, 139, 150, 21);
+		frame.getContentPane().add(text_lastName);
+		text_lastName.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(351, 165, 150, 21);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		text_disease = new JTextField();
+		text_disease.setBounds(351, 165, 150, 21);
+		frame.getContentPane().add(text_disease);
+		text_disease.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(351, 192, 150, 21);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		text_record1 = new JTextField();
+		text_record1.setBounds(351, 192, 150, 21);
+		frame.getContentPane().add(text_record1);
+		text_record1.setColumns(10);
 		
 		JLabel lblNote = new JLabel("Note");
 		lblNote.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNote.setBounds(256, 280, 70, 28);
 		frame.getContentPane().add(lblNote);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(351, 221, 150, 21);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		text_record3 = new JTextField();
+		text_record3.setBounds(351, 221, 150, 21);
+		frame.getContentPane().add(text_record3);
+		text_record3.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(543, 192, 150, 21);
-		frame.getContentPane().add(textField_6);
-		textField_6.setColumns(10);
+		text_record2 = new JTextField();
+		text_record2.setBounds(543, 192, 150, 21);
+		frame.getContentPane().add(text_record2);
+		text_record2.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(543, 221, 150, 21);
-		frame.getContentPane().add(textField_7);
-		textField_7.setColumns(10);
+		text_record4 = new JTextField();
+		text_record4.setBounds(543, 221, 150, 21);
+		frame.getContentPane().add(text_record4);
+		text_record4.setColumns(10);
 		
 		JLabel label = new JLabel("3.");
 		label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
@@ -159,10 +142,10 @@ public class AddPatientData {
 		label_4.setBounds(523, 222, 46, 15);
 		frame.getContentPane().add(label_4);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(256, 312, 488, 283);
-		frame.getContentPane().add(textField_9);
-		textField_9.setColumns(10);
+		text_note = new JTextField();
+		text_note.setBounds(256, 312, 488, 283);
+		frame.getContentPane().add(text_note);
+		text_note.setColumns(10);
 		
 		JLabel label_6 = new JLabel("New label");
 		label_6.setBounds(34, 116, 150, 200);
@@ -173,9 +156,74 @@ public class AddPatientData {
 		label_2.setBounds(205, 256, 95, 15);
 		frame.getContentPane().add(label_2);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(350, 252, 96, 21);
-		frame.getContentPane().add(textField_5);
-		textField_5.setColumns(10);
+		JRadioButton maleRadioButton = new JRadioButton("Man");
+		maleRadioButton.setBounds(322, 254, 58, 23);
+		maleRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		maleRadioButton.setActionCommand("Male");
+		frame.getContentPane().add(maleRadioButton);
+		
+		JRadioButton femaleRadioButton = new JRadioButton("Female");
+		femaleRadioButton.setBounds(395, 253, 76, 23);
+		femaleRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+		femaleRadioButton.setActionCommand("Female");
+		frame.getContentPane().add(femaleRadioButton);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(maleRadioButton);
+		group.add(femaleRadioButton);
+		
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				ArrayList<String> records = new ArrayList<String>();
+				records.add(text_record1.getText());
+				records.add(text_record2.getText());
+				records.add(text_record3.getText());
+				records.add(text_record4.getText());
+
+				patients.add(
+						new Patient(text_name.getText(), 
+								text_lastName.getText(), 
+								patients.get(patients.size() - 1).getId(),
+								doctorId,
+								group.getSelection().getActionCommand(),
+								text_disease.getText(),
+								records,
+								text_note.getText()
+								));
+				
+				patientXmlRW.write(patients);
+				frame.dispose();
+				DoctorList.openVisible();
+			}
+		});
+		
+		btnSave.setBounds(256, 617, 105, 41);
+		frame.getContentPane().add(btnSave);
+		
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				frame.dispose();
+				DoctorList.openVisible();
+			}
+		});
+		btnCancel.setBounds(376, 617, 107, 41);
+		frame.getContentPane().add(btnCancel);
 	}
+	
+	private void setPatient()
+	{
+		patients = patientXmlRW.read();
+		
+	}
+	
+	
+	
 }

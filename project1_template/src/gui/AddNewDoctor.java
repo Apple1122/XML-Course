@@ -16,7 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import data.Doctor;
-import xml.CreateXML;
+import xml.XmlRW;
 
 public class AddNewDoctor {
 
@@ -139,7 +139,7 @@ public class AddNewDoctor {
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CreateXML.doctorList.add(new Doctor(textField_name.getText(), 
+				XmlRW.doctorList.add(new Doctor(textField_name.getText(), 
 						textField_lastName.getText(), 
 						textField_subject.getText(),
 						group.getSelection().getActionCommand()));

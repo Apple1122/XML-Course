@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -17,24 +19,36 @@ import javax.swing.SwingConstants;
 
 import data.Doctor;
 import data.Patient;
-import xml.CreateXML;
+import xml.DoctorXmlRW;
+import xml.PatientXmlRW;
 
 public class DoctorData {
 
-	private JFrame frame;
-
+	private static JFrame frame;
+	private JLabel label_name;
+	private JLabel label_lastname;
+	private JLabel label_subject;
+	private JLabel label_gender;
+	private JLabel label_photo;
 	
-	public DoctorData(int index) {
-		initialize(index);
+	private Doctor doctor;
+	private ArrayList<Patient> patients;
+	private DoctorXmlRW doctorXmlRW;
+	private PatientXmlRW patientXmlRW;
+	private SimpleDateFormat formatter = new SimpleDateFormat("E, MMM dd yyyy");
+	
+	public DoctorData(int doctorId) {
+		setDoctorAndPatients(doctorId);
+		initialize(doctorId);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int index) {
+	private void initialize(int doctorId) {
 		
 		// get doctor data from doctorList in CreateXML class
-//		Doctor doctor = CreateXML.doctorList.get(index);
+//		Doctor doctor = CreateXML.doctorList.get(doctorId);
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1109, 721);
@@ -63,7 +77,7 @@ public class DoctorData {
 			public void actionPerformed(ActionEvent e) 
 			{
 				frame.dispose();
-				new EditDoctorData(index);
+				new EditDoctorData(doctorId);
 			}
 		});
 		frame.getContentPane().add(btnEditDoctor);
@@ -92,6 +106,11 @@ public class DoctorData {
 		doctorGender.setBounds(244, 208, 71, 23);
 		frame.getContentPane().add(doctorGender);
 		
+		JLabel lblLastLoginTime = new JLabel("Last Login Time:");
+		lblLastLoginTime.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblLastLoginTime.setBounds(244, 246, 158, 19);
+		frame.getContentPane().add(lblLastLoginTime);
+		
 		JLabel lblDoctorData = new JLabel("Doctor Data");
 		lblDoctorData.setFont(new Font("Times New Roman", Font.PLAIN, 40));
 		lblDoctorData.setBounds(34, 43, 292, 33);
@@ -111,7 +130,7 @@ public class DoctorData {
 		
 		JLabel label_subject = new JLabel();
 		label_subject.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_subject.setBounds(390, 180, 78, 21);
+		label_subject.setBounds(390, 180, 95, 21);
 		frame.getContentPane().add(label_subject);
 		
 		JLabel label_gender = new JLabel();
@@ -125,21 +144,27 @@ public class DoctorData {
 		label_photo.setBounds(44, 96, 150, 200);
 		frame.getContentPane().add(label_photo);
 		
+		JLabel label_loginTime = new JLabel();
+		label_loginTime.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		label_loginTime.setBounds(400, 242, 114, 21);
+		frame.getContentPane().add(label_loginTime);
+		
 		/* hard code start:*/
-		label_name.setText("Johnson");
-		label_lastname.setText("CHEN");
-		label_subject.setText("Dick");
-		label_gender.setText("Male");
+//		label_name.setText("Johnson");
+//		label_lastname.setText("CHEN");
+//		label_subject.setText("Dick");
+//		label_gender.setText("Male");
 		label_photo.setIcon(new ImageIcon("/Users/kylehuang/CCU/Courses/XML/project/XML-Course/project1_template/bin/img/person.png"));
 		/* hard code end */
 		
-//		/* set label text and photo start */
-//		label_name.setText(doctor.getName());
-//		label_lastname.setText(doctor.getLastName());
-//		label_subject.setText(doctor.getSubject());
-//		label_gender.setText(doctor.getGender());
+		/* set label text and photo start */
+		label_name.setText(doctor.getName());
+		label_lastname.setText(doctor.getLastName());
+		label_subject.setText(doctor.getSubject());
+		label_gender.setText(doctor.getGender());
+		label_loginTime.setText(formatter.format(doctor.getLastLoginTime()));
 //		label_photo.setIcon(new ImageIcon(doctor.getPhotoPath()));
-//		/* set label text and photo end*/
+		/* set label text and photo end*/
 		
 		JLabel label_title = new JLabel("Please double click on the patient which you want");
 		label_title.setBounds(287, 555, 436, 16);
@@ -154,6 +179,7 @@ public class DoctorData {
 		btnEnter.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnEnter.setVisible(false);
 		function_panel.add(btnEnter);
+		
 
 		
 		JButton btnDelete = new JButton("Delete");
@@ -166,7 +192,7 @@ public class DoctorData {
 	    JList list = new JList(model);
 		
 		int i = 1;
-		for(Patient patient : CreateXML.doctorList.get(index).getPatients())
+		for(Patient patient : patients)
 		{
 			model.add(i++, patient.getName() + " " + patient.getLastName());
 		}
@@ -182,8 +208,8 @@ public class DoctorData {
 					btnEnter.setVisible(true);
 					btnEnter.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							frame.dispose();
-							new PatientData(id);
+							frame.setVisible(false);
+							new PatientData((Patient)list.getModel().getElementAt(id));
 						}
 					});
 					
@@ -197,6 +223,8 @@ public class DoctorData {
 					btnDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							// delete xml 
+							patients.remove(id);
+							patientXmlRW.write(patients);
 						}
 					});
 					
@@ -212,26 +240,37 @@ public class DoctorData {
 		btnAddPatient.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnAddPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new AddPatientData(index);
+				new AddPatientData(doctorId);
 			}
 		});
 		frame.getContentPane().add(btnAddPatient);
 		
-		JLabel lblLastLoginTime = new JLabel("Last Login Time:");
-		lblLastLoginTime.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblLastLoginTime.setBounds(244, 246, 158, 19);
-		frame.getContentPane().add(lblLastLoginTime);
+		
 		
 		
 
 	}
 	
+	private void setDoctorAndPatients(int id)
+	{
+		doctorXmlRW = new DoctorXmlRW();
+		patientXmlRW = new PatientXmlRW();
+		
+		doctor = doctorXmlRW.read().get(id);
+//		patients = patientXmlRW.read().get(id);
+		patients = patientXmlRW.read();
+		
+	}
+	public static void openVisible()
+	{
+		frame.setVisible(true);
+	}
+	
 	/*
 	 * add new doctor into doctorList in CreateXML class 
 	 */
-	private void addNewDoctor(String name, String lastName, String subject, String gender, String photoPath)
-	{
-		CreateXML.doctorList.add(new Doctor(name, lastName, subject, photoPath, gender));
-	}
+//	private void addNewDoctor(String name, String lastName, String subject, String gender, String photoPath)
+//	{
+//		add(new Doctor(name, lastName, subject, photoPath, gender));
+//	}
 }

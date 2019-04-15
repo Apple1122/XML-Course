@@ -1,15 +1,17 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Doctor {
 
 	private String name;
 	private String lastName;
+	private int id;
 	private String subject;
 	private String photoPath;
 	private String gender;
-	private String lastLoginTime;
+	private Date lastLoginTime;
 	private ArrayList<Patient> patients;
 	
 	
@@ -31,6 +33,17 @@ public class Doctor {
 		this.gender = gender;
 	}
 	
+
+
+	public Doctor(String name, String lastName, int id, String subject, String gender, Date lastLoginTime) {
+		this.name = name;
+		this.lastName = lastName;
+		this.id = id;
+		this.subject = subject;
+		this.gender = gender;
+		this.lastLoginTime = lastLoginTime;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -45,6 +58,15 @@ public class Doctor {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getSubject() {
@@ -71,11 +93,11 @@ public class Doctor {
 		this.gender = gender;
 	}
 
-	public String getLastLoginTime() {
+	public Date getLastLoginTime() {
 		return lastLoginTime;
 	}
 
-	public void setLastLoginTime(String lastLoginTime) {
+	public void setLastLoginTime(Date lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
 	}
 

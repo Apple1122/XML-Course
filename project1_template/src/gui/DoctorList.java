@@ -1,18 +1,18 @@
 package gui;
 
 
-import java.awt.BorderLayout;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import data.Doctor;
-import xml.CreateXML;
+import xml.DoctorXmlRW;
 
 public class DoctorList {
 	
@@ -20,6 +20,9 @@ public class DoctorList {
 	private JLabel[] labels;
 	private JButton[] buttons;
 	private static int countDoctor;
+	
+	private DoctorXmlRW doctorXmlRW;
+	private ArrayList<Doctor> doctors;
 	
 	public static void main(String [] args)
 	{
@@ -136,14 +139,30 @@ public class DoctorList {
 		labels[8] = dlabel_9;
 		frame.getContentPane().add(dlabel_9);
 		
-		// for each
-//		int index = 0;
-//		for(Doctor doctor : CreateXML.doctorList)
-//		{
+//		 for each
+		
+		doctorXmlRW = new DoctorXmlRW();
+		
+		doctors = doctorXmlRW.read();
+		
+		for(int i =  0; i < labels.length; ++i)
+		{
+			labels[i].setVisible(false);
+			buttons[i].setVisible(false);
+		}
+		
+		int index = 0;
+		
+		for(Doctor doctor : doctors)
+		{
 //			labels[index++].setIcon(new ImageIcon(doctor.getPhotoPath()));
-//			if(index > CreateXML.doctorList.size())
-//				break;
-//		}
+			labels[index].setVisible(true);
+			buttons[index].setVisible(true);
+			labels[index++].setIcon(new ImageIcon("/Users/kylehuang/CCU/Courses/XML/project/XML-Course/project1_template/img/person.png"));
+			
+			if(index > doctors.size())
+				break;
+		}
 		
 	}
 	
@@ -297,8 +316,6 @@ public class DoctorList {
 	{
 		frame.setVisible(true);
 		
-		// recount how many doctor we have 
-		countDoctor = CreateXML.doctorList.size();
 		
 		// https://stackoverflow.com/questions/3718435/refresh-jframe-after-adding-new-components
 		// http://www.java2s.com/Questions_And_Answers/Swing/JFrame/Refresh.htm

@@ -14,6 +14,7 @@ public class Write {
 	{
 		StringWriter stringWriter = new StringWriter();
 		XMLOutputFactory xMLOutputFactory = XMLOutputFactory.newInstance();
+		
 		try {
 			XMLStreamWriter xMLStreamWriter = xMLOutputFactory.createXMLStreamWriter(stringWriter);
 			

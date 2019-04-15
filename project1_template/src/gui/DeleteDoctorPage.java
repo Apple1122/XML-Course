@@ -13,7 +13,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import data.Doctor;
-import xml.CreateXML;
+import xml.XmlRW;
 import javax.swing.JButton;
 
 public class DeleteDoctorPage {
@@ -71,8 +71,8 @@ public class DeleteDoctorPage {
 						@Override
 						public void actionPerformed(ActionEvent ae)
 						{
-							CreateXML.doctorList.remove(index);
-							CreateXML.createNewXML();
+							XmlRW.doctorList.remove(index);
+							XmlRW.createNewXML();
 						}
 					});
 				}
