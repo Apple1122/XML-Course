@@ -1,16 +1,27 @@
 package xml;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import javax.xml.parsers.*;
-import javax.xml.stream.*;
-import org.xml.sax.*;
-import org.xml.sax.helpers.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 import data.Doctor;
-import data.Patient;
 
 /**
  *
@@ -25,7 +36,8 @@ public class DoctorXmlRW {
 
     private String str;
     private ArrayList<Doctor> doctors;
-    private SimpleDateFormat formatter = new SimpleDateFormat("E, MMM dd yyyy");  
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");  
+    private Date date = new Date();
 
     public DoctorXmlRW() {
         doctors = new ArrayList<>();   
@@ -36,7 +48,6 @@ public class DoctorXmlRW {
     	
     	String filePath = "Doctors.xml";
 
-    	
     	saxParserFactory = SAXParserFactory.newInstance();
         
         try {
@@ -49,7 +60,7 @@ public class DoctorXmlRW {
 				private int id;
 				private String subject;
 				private String gender;
-				private Date lastLoginTime;
+				private String lastLoginTime;
 				
 				
 				private boolean nameTime = false;
@@ -61,11 +72,11 @@ public class DoctorXmlRW {
 				public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException 
 				{
 					
-					if(qName.equals("doctor"))
+					if(qName.equals("name"))
+					{
 						id = Integer.parseInt(attributes.getValue("id"));
-					
-					else if(qName.equals("name"))
 						nameTime = true;
+					}
 			
 					else if(qName.equals("lastname"))
 						lastNameTime = true;
@@ -79,7 +90,6 @@ public class DoctorXmlRW {
 					
 					else if(qName.equals("lastLoginTime"))
 						loginTime = true;
-
 					
 				}
 
@@ -109,22 +119,21 @@ public class DoctorXmlRW {
 						subject = new String(ch, start, length);
 						subjectTime = false;
 					}
-					
+
 					else if(loginTime)
 					{
-						try {
-							lastLoginTime = formatter.parse(new String(ch, start, length));
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						if(new String(ch, start, length) != null)
+							lastLoginTime = new String(ch, start, length);
+						else 
+							lastLoginTime = dateFormat.format(date);
+						
 						loginTime = false;
 					}
 				}
 
 				public void endElement(String uri, String localName, String qName) throws SAXException 
 				{
-					if(qName.equals("doctor"))
+					if(qName.equals("Doctor"))
 						doctors.add(new Doctor(name, lastName, id, subject, gender, lastLoginTime));
 				}
 			};
@@ -157,14 +166,14 @@ public class DoctorXmlRW {
 			int count = 1;
 			for(Doctor d : list)
 			{
+				//System.out.println(count);
 				xMLStreamWriter.writeStartElement("Doctor");
 				
-				xMLStreamWriter.writeAttribute("id", "" + count++);
-				
 				xMLStreamWriter.writeStartElement("name");
+				xMLStreamWriter.writeAttribute("id", "" + count);
 				xMLStreamWriter.writeCharacters(d.getName());
 				xMLStreamWriter.writeEndElement();
-				
+				count++;
 				xMLStreamWriter.writeStartElement("lastname");
 				xMLStreamWriter.writeCharacters(d.getLastName());
 				xMLStreamWriter.writeEndElement();
@@ -177,13 +186,16 @@ public class DoctorXmlRW {
 				xMLStreamWriter.writeCharacters(d.getSubject());
 				xMLStreamWriter.writeEndElement();
 				
-				xMLStreamWriter.writeStartElement("lastLoginTime");
-				xMLStreamWriter.writeCharacters(formatter.format(d.getLastLoginTime()));
+				xMLStreamWriter.writeStartElement("lastLoginTime");				
+//				if(d.getLastLoginTime() == null)
+//					xMLStreamWriter.writeCharacters(dateFormat.format(d.getLastLoginTime()));
+//				else
+					xMLStreamWriter.writeCharacters(dateFormat.format(date));
 				xMLStreamWriter.writeEndElement();
 				
 				xMLStreamWriter.writeEndElement();
 			}
-			
+			xMLStreamWriter.writeEndElement();
 			xMLStreamWriter.writeEndDocument();
 			
 			xMLStreamWriter.close();
@@ -208,6 +220,7 @@ public class DoctorXmlRW {
     	
     	
     }
+    
 
 
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
@@ -16,7 +17,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import data.Doctor;
-import xml.XmlRW;
+import data.Patient;
+import xml.DoctorXmlRW;
+import xml.PatientXmlRW;
 
 public class AddNewDoctor {
 
@@ -25,19 +28,22 @@ public class AddNewDoctor {
 	private JTextField textField_lastName;
 	private JTextField textField_subject;
 
+	private DoctorXmlRW doctorXmlRW;
+	private ArrayList<Doctor> doctors;
+	
 	// JFileChooser can upload file(photo)
 	
 	/**
 	 * Create the application.
 	 */
-	public AddNewDoctor(int countDoctor) {
-		initialize(countDoctor);
+	public AddNewDoctor() {
+		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int countDoctor) 
+	private void initialize() 
 	{
 		
 		frame = new JFrame();
@@ -105,32 +111,34 @@ public class AddNewDoctor {
 		group.add(femaleRadioButton);
 		
 		
-		DefaultListModel model = new DefaultListModel();
-	    JList list = new JList(model);		
+//		DefaultListModel model = new DefaultListModel();
+//	    JList list = new JList(model);		
+//		
+//		list.addMouseListener(new MouseAdapter() 
+//		{
+//			public void mouseClicked(MouseEvent mouseEvent) 
+//			{
+//				
+//			}
+//		});
+//		list.setBounds(244, 276, 479, 278);
+//		frame.getContentPane().add(list);
 		
-		list.addMouseListener(new MouseAdapter() 
-		{
-			public void mouseClicked(MouseEvent mouseEvent) 
-			{
-				
-			}
-		});
-		list.setBounds(244, 276, 479, 278);
-		frame.getContentPane().add(list);
+//		// Button: Add Patient
+//		JButton btnAddPatient = new JButton("Add Patient");
+//		btnAddPatient.setBounds(730, 407, 114, 55);
+//		btnAddPatient.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+//		btnAddPatient.addActionListener(new ActionListener()
+//		{
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new AddPatientData(0);
+//				
+//			}
+//		});
+//		frame.getContentPane().add(btnAddPatient);	
 		
-		// Button: Add Patient
-		JButton btnAddPatient = new JButton("Add Patient");
-		btnAddPatient.setBounds(730, 407, 114, 55);
-		btnAddPatient.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnAddPatient.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new AddPatientData(0);
-				
-			}
-		});
-		frame.getContentPane().add(btnAddPatient);	
+		doctorXmlRW = new DoctorXmlRW();
 		
 		// Button: Save
 		JButton btnSave = new JButton("Save");
@@ -139,11 +147,20 @@ public class AddNewDoctor {
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				XmlRW.doctorList.add(new Doctor(textField_name.getText(), 
+				
+				doctors = doctorXmlRW.read();
+				System.out.println("AddNewdoctor: " + doctors.size());
+				
+				
+				doctors.add(new Doctor(textField_name.getText(), 
 						textField_lastName.getText(), 
+						doctors.get(doctors.size() - 1).getId() + 1,
 						textField_subject.getText(),
-						group.getSelection().getActionCommand()));
-
+						group.getSelection().getActionCommand()
+						));
+				
+				doctorXmlRW.write(doctors);
+				
 				frame.dispose();
 				DoctorList.openVisible();
 			}
@@ -160,7 +177,8 @@ public class AddNewDoctor {
 			public void actionPerformed(ActionEvent e) 
 			{
 				frame.dispose();
-				DoctorList.openVisible();
+//				DoctorList.openVisible();
+				new DoctorList();
 			}
 		});
 		frame.getContentPane().add(btnCancel);

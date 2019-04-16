@@ -33,6 +33,7 @@ public class DoctorData {
 	
 	private Doctor doctor;
 	private ArrayList<Patient> patients;
+	private ArrayList<Patient> patientsForDoctor;
 	private DoctorXmlRW doctorXmlRW;
 	private PatientXmlRW patientXmlRW;
 	private SimpleDateFormat formatter = new SimpleDateFormat("E, MMM dd yyyy");
@@ -68,6 +69,7 @@ public class DoctorData {
 			}
 		});
 		frame.getContentPane().add(btnBack);
+		
 		
 		/* Button: edit doctor */
 		JButton btnEditDoctor = new JButton("Edit");
@@ -146,7 +148,7 @@ public class DoctorData {
 		
 		JLabel label_loginTime = new JLabel();
 		label_loginTime.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_loginTime.setBounds(400, 242, 114, 21);
+		label_loginTime.setBounds(400, 242, 170, 21);
 		frame.getContentPane().add(label_loginTime);
 		
 		/* hard code start:*/
@@ -162,7 +164,8 @@ public class DoctorData {
 		label_lastname.setText(doctor.getLastName());
 		label_subject.setText(doctor.getSubject());
 		label_gender.setText(doctor.getGender());
-		label_loginTime.setText(formatter.format(doctor.getLastLoginTime()));
+		if(doctor.getLastLoginTime() != null)
+			label_loginTime.setText(doctor.getLastLoginTime());
 //		label_photo.setIcon(new ImageIcon(doctor.getPhotoPath()));
 		/* set label text and photo end*/
 		
@@ -191,10 +194,14 @@ public class DoctorData {
 		DefaultListModel model = new DefaultListModel();
 	    JList list = new JList(model);
 		
-		int i = 1;
+	    int count = 0;
 		for(Patient patient : patients)
 		{
-			model.add(i++, patient.getName() + " " + patient.getLastName());
+			if(patient.getDoctorId() == doctorId)
+			{
+				model.add(count++, patient.getName() + " " + patient.getLastName());
+				patientsForDoctor.add(patient);
+			}
 		}
 		
 		
@@ -209,7 +216,10 @@ public class DoctorData {
 					btnEnter.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							frame.setVisible(false);
-							new PatientData((Patient)list.getModel().getElementAt(id));
+							
+//							Patient p = (Patient)list.getModel().getElementAt(id);
+//							System.out.println(patientsForDoctor.size());
+							new PatientData(patientsForDoctor.get(id));
 						}
 					});
 					
@@ -222,8 +232,19 @@ public class DoctorData {
 					btnDelete.setText("Delete " + list.getModel().getElementAt(id));
 					btnDelete.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							
 							// delete xml 
-							patients.remove(id);
+							int i = 0;
+							for(Patient patient : patients) {
+								if(patient.getId() == patientsForDoctor.get(id).getId())
+								{
+									patients.remove(i);
+									patientsForDoctor.remove(id);
+									break;
+								}
+								i++;
+							}
+							
 							patientXmlRW.write(patients);
 						}
 					});
@@ -241,6 +262,7 @@ public class DoctorData {
 		btnAddPatient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new AddPatientData(doctorId);
+				
 			}
 		});
 		frame.getContentPane().add(btnAddPatient);
@@ -251,14 +273,24 @@ public class DoctorData {
 
 	}
 	
-	private void setDoctorAndPatients(int id)
+	private void setDoctorAndPatients(int doctorId)
 	{
 		doctorXmlRW = new DoctorXmlRW();
 		patientXmlRW = new PatientXmlRW();
 		
-		doctor = doctorXmlRW.read().get(id);
-//		patients = patientXmlRW.read().get(id);
+		for(Doctor d : doctorXmlRW.read())
+		{
+			if(d.getId() == doctorId && d != null)
+				doctor = d;
+		}
+		
 		patients = patientXmlRW.read();
+		patientsForDoctor = new ArrayList<Patient>();
+//		for(Patient patient : patientXmlRW.read())
+//		{
+//			if(patient.getDoctorId() == doctorId && patient != null)
+//				patients.add(patient);
+//		}
 		
 	}
 	public static void openVisible()

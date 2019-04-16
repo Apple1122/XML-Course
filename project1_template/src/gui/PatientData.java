@@ -23,7 +23,7 @@ public class PatientData {
 	private JLabel text_name;
 	private JLabel text_lastName;
 	private JLabel text_disease;
-	private JLabel[] text_record;
+	private JLabel[] text_record = new JLabel[4];
 	private JLabel text_note;
 	private JLabel text_gender;
 
@@ -72,7 +72,7 @@ public class PatientData {
 		lblDisease.setBounds(205, 168, 85, 15);
 		frame.getContentPane().add(lblDisease);
 		
-		JLabel lblMedicalRecord = new JLabel("Medical Record:");
+		JLabel lblMedicalRecord = new JLabel("Record:");
 		lblMedicalRecord.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblMedicalRecord.setBounds(205, 193, 136, 15);
 		frame.getContentPane().add(lblMedicalRecord);
@@ -89,45 +89,18 @@ public class PatientData {
 		text_disease.setBounds(351, 165, 150, 21);
 		frame.getContentPane().add(text_disease);
 		
+		JLabel text_medicalRecord = new JLabel("New label");
+		text_medicalRecord.setBounds(361, 193, 61, 16);
+		frame.getContentPane().add(text_medicalRecord);
+		
 		JLabel lblNote = new JLabel("Note");
 		lblNote.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblNote.setBounds(256, 280, 70, 28);
 		frame.getContentPane().add(lblNote);
 		
-		text_record = new JLabel[4];
-		text_record[0].setBounds(351, 192, 150, 21);
-		frame.getContentPane().add(text_record[0]);
-		
-		text_record[1].setBounds(351, 221, 150, 21);
-		frame.getContentPane().add(text_record[1]);
-	
-		text_record[2].setBounds(543, 192, 150, 21);
-		frame.getContentPane().add(text_record[2]);
-		
-		text_record[3].setBounds(543, 221, 150, 21);
-		frame.getContentPane().add(text_record[3]);
-		
-		JLabel label = new JLabel("3.");
-		label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label.setBounds(340, 218, 22, 21);
-		frame.getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("1.");
-		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_1.setBounds(340, 195, 46, 15);
-		frame.getContentPane().add(label_1);
-		
-		JLabel label_3 = new JLabel("2.");
-		label_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_3.setBounds(523, 192, 46, 16);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("4.");
-		label_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_4.setBounds(523, 222, 46, 15);
-		frame.getContentPane().add(label_4);
 		
 		text_note = new JLabel();
+		text_note.setVerticalAlignment(SwingConstants.TOP);
 		text_note.setBounds(256, 312, 488, 283);
 		frame.getContentPane().add(text_note);
 		
@@ -151,10 +124,11 @@ public class PatientData {
 		text_disease.setText(patient.getDisease());
 		text_gender.setText(patient.getGender());
 		
-		for(int i = 0; i < patient.getMedicalRecord().size(); ++i)
-		{
-			text_record[i].setText(patient.getMedicalRecord().get(i)); 
-		}
+		String records = "";
+		for(String str : patient.getMedicalRecord())
+			records += " " + str;
+		text_medicalRecord.setText(records);
+		
 		
 		text_note.setText(patient.getNote());
 		
@@ -165,10 +139,13 @@ public class PatientData {
 		btnBack.setBounds(289, 540, 117, 29);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
+				frame.dispose();
+				DoctorData.openVisible();
 			}
 		});
 		frame.getContentPane().add(btnBack);
+		
+		
 		
 		
 	}

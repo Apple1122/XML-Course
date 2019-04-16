@@ -11,7 +11,7 @@ public class Doctor {
 	private String subject;
 	private String photoPath;
 	private String gender;
-	private Date lastLoginTime;
+	private String lastLoginTime;
 	private ArrayList<Patient> patients;
 	
 	
@@ -33,9 +33,17 @@ public class Doctor {
 		this.gender = gender;
 	}
 	
+	
 
+	public Doctor(String name, String lastName, int id, String subject, String gender) {
+		this.name = name;
+		this.lastName = lastName;
+		this.id = id;
+		this.subject = subject;
+		this.gender = gender;
+	}
 
-	public Doctor(String name, String lastName, int id, String subject, String gender, Date lastLoginTime) {
+	public Doctor(String name, String lastName, int id, String subject, String gender, String lastLoginTime) {
 		this.name = name;
 		this.lastName = lastName;
 		this.id = id;
@@ -93,11 +101,11 @@ public class Doctor {
 		this.gender = gender;
 	}
 
-	public Date getLastLoginTime() {
+	public String getLastLoginTime() {
 		return lastLoginTime;
 	}
 
-	public void setLastLoginTime(Date lastLoginTime) {
+	public void setLastLoginTime(String lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
 	}
 

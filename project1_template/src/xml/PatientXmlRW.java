@@ -81,7 +81,7 @@ public class PatientXmlRW {
 				private String gender;
 				private String disease;
 				private int doctorId;
-				private ArrayList<String> medicalRecord;
+				private ArrayList<String> medicalRecord = new ArrayList<String>();
 				private String note;
 				
 				private boolean nameTime = false;
@@ -158,7 +158,9 @@ public class PatientXmlRW {
 					}
 					else if(medicalRecordTime)
 					{
-						medicalRecord.add(new String(ch, start, length));
+						String record = new String(ch, start, length);
+						if(!(record.equals("") || record.isEmpty()))
+							medicalRecord.add(record);
 					}
 					
 					else if(noteTime)
@@ -229,6 +231,10 @@ public class PatientXmlRW {
 					xMLStreamWriter.writeCharacters(p.getLastName());
 					xMLStreamWriter.writeEndElement();
 					
+					xMLStreamWriter.writeStartElement("gender");
+					xMLStreamWriter.writeCharacters(p.getGender());
+					xMLStreamWriter.writeEndElement();
+					
 					xMLStreamWriter.writeStartElement("disease");
 					xMLStreamWriter.writeCharacters(p.getDisease());
 					xMLStreamWriter.writeEndElement();
@@ -237,20 +243,17 @@ public class PatientXmlRW {
 					xMLStreamWriter.writeCharacters("" + p.getDoctorId());
 					xMLStreamWriter.writeEndElement();
 					
-					xMLStreamWriter.writeStartElement("gender");
-					xMLStreamWriter.writeCharacters(p.getGender());
-					xMLStreamWriter.writeEndElement();
 					
 					xMLStreamWriter.writeStartElement("medicalrecords");
 					for(String record : p.getMedicalRecord())
 					{
-						xMLStreamWriter.writeStartDocument("record");
+						xMLStreamWriter.writeStartElement("record");
 						xMLStreamWriter.writeCharacters(record);
 						xMLStreamWriter.writeEndElement();
 					}
 					xMLStreamWriter.writeEndElement();
 					
-					xMLStreamWriter.writeStartDocument("note");
+					xMLStreamWriter.writeStartElement("note");
 					xMLStreamWriter.writeCharacters(p.getNote());
 					xMLStreamWriter.writeEndElement();
 					

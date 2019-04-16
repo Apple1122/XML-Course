@@ -13,13 +13,13 @@ import javax.swing.JLabel;
 
 import data.Doctor;
 import xml.DoctorXmlRW;
+import javax.swing.SwingConstants;
 
 public class DoctorList {
 	
 	private static JFrame frame;
 	private JLabel[] labels;
 	private JButton[] buttons;
-	private static int countDoctor;
 	
 	private DoctorXmlRW doctorXmlRW;
 	private ArrayList<Doctor> doctors;
@@ -27,13 +27,14 @@ public class DoctorList {
 	public static void main(String [] args)
 	{
 		new DoctorList();
+		
 	}
 	
 	/* constructor */
 	public DoctorList()
-	{
-//		countDoctor = CreateXML.doctorList.size();
+	{		
 		initialize();
+		
 	}
 	
 	/**
@@ -56,18 +57,24 @@ public class DoctorList {
         frame.setVisible(true);
         
 
+
+        addDoctorButton();  
+		
         addDoctorLabel();
-        addDoctorButton();
-        
+		
+		System.out.println("addDoctorButton - show all doctor end");		
+
+		
 		JButton btnAddDoctor = new JButton("Add Doctor");
 		btnAddDoctor.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		btnAddDoctor.setBounds(899, 456, 129, 71);
+		btnAddDoctor.setVisible(true);
 		btnAddDoctor.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent ae)
 			{
 				frame.setVisible(false);
-				new AddNewDoctor(countDoctor);
+				new AddNewDoctor();
 			}
 		});
 		frame.getContentPane().add(btnAddDoctor);
@@ -94,47 +101,56 @@ public class DoctorList {
 		labels = new JLabel[9];
 		
 		JLabel dlabel_1 = new JLabel();
+		dlabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_1.setBounds(60, 103, 150, 200);
 		labels[0] = dlabel_1;
 		frame.getContentPane().add(dlabel_1);
 		
 		
 		JLabel dlabel_2 = new JLabel();
+		dlabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_2.setBounds(265, 103, 150, 200);
 		labels[1] = dlabel_2;
 		frame.getContentPane().add(dlabel_2);
 		
 		JLabel dlabel_3 = new JLabel();
+		dlabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_3.setBounds(470, 109, 150, 200);
 		labels[2] = dlabel_3;
 		frame.getContentPane().add(dlabel_3);
 		
 		JLabel dlabel_4 = new JLabel();
+		dlabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_4.setBounds(672, 103, 150, 200);
 		labels[3] = dlabel_4;
 		frame.getContentPane().add(dlabel_4);
 		
 		JLabel dlabel_5 = new JLabel();
+		dlabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_5.setBounds(878, 103, 150, 200);
 		labels[4] = dlabel_5;
 		frame.getContentPane().add(dlabel_5);
 		
 		JLabel dlabel_6 = new JLabel();
+		dlabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_6.setBounds(60, 385, 150, 200);
 		labels[5] = dlabel_6;
 		frame.getContentPane().add(dlabel_6);
 		
 		JLabel dlabel_7 = new JLabel();
+		dlabel_7.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_7.setBounds(265, 385, 150, 200);
 		labels[6] = dlabel_7;
 		frame.getContentPane().add(dlabel_7);
 		
 		JLabel dlabel_8 = new JLabel();
+		dlabel_8.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_8.setBounds(470, 385, 150, 200);
 		labels[7] = dlabel_8;
 		frame.getContentPane().add(dlabel_8);
 		
 		JLabel dlabel_9 = new JLabel();
+		dlabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		dlabel_9.setBounds(672, 385, 150, 200);
 		labels[8] = dlabel_9;
 		frame.getContentPane().add(dlabel_9);
@@ -153,16 +169,20 @@ public class DoctorList {
 		
 		int index = 0;
 		
+		System.out.println(doctors.size());
+		
 		for(Doctor doctor : doctors)
 		{
 //			labels[index++].setIcon(new ImageIcon(doctor.getPhotoPath()));
 			labels[index].setVisible(true);
+			buttons[index].setText(doctor.getName() + " " + doctor.getLastName());
 			buttons[index].setVisible(true);
 			labels[index++].setIcon(new ImageIcon("/Users/kylehuang/CCU/Courses/XML/project/XML-Course/project1_template/img/person.png"));
 			
 			if(index > doctors.size())
 				break;
 		}
+
 		
 	}
 	
@@ -170,6 +190,7 @@ public class DoctorList {
 	/* add doctor button series */
 	private void addDoctorButton()
 	{
+
 		buttons = new JButton[9];
 		
 		// Button: doctor1
@@ -307,7 +328,6 @@ public class DoctorList {
 		});
 		buttons[8] = btn_doctor9;
 		frame.getContentPane().add(btn_doctor9);
-		
 	}
 	
 	

@@ -5,20 +5,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import data.Doctor;
-import xml.XmlRW;
-import javax.swing.JButton;
+import data.Patient;
+import xml.DoctorXmlRW;
+import xml.PatientXmlRW;
 
 public class DeleteDoctorPage {
 
 	private JFrame frame;
+	
+	private DoctorXmlRW doctorXmlRW;
+	private PatientXmlRW patientXmlRW;
+	
+	private ArrayList<Doctor> doctors;
+	private ArrayList<Patient> patients;
 	
 	/**
 	 * @wbp.parser.entryPoint
@@ -38,10 +47,7 @@ public class DeleteDoctorPage {
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(113, 151, 641, 531);
-		panel.setLayout(null);
-		frame.getContentPane().add(panel);
+		
 		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setBounds(777, 595, 174, 29);
@@ -49,36 +55,122 @@ public class DeleteDoctorPage {
 		btnDelete.setVisible(false);
 		frame.getContentPane().add(btnDelete);
 				
+		doctorXmlRW = new DoctorXmlRW();
+		patientXmlRW = new PatientXmlRW();
+		
+		doctors = doctorXmlRW.read();
+		patients = patientXmlRW.read();
+		
 		DefaultListModel model = new DefaultListModel();
-		JList list = new JList(model);
-		int count = 1;
-//		for(Doctor doctor : CreateXML.doctorList)
+//		JList list = new JList(model);
+//		list.setValueIsAdjusting(true);
+//		
+//		int count = 0;
+//		System.out.println(doctors.size());
+//		for(Doctor doctor : doctors)
 //		{
 //			model.add(count++, doctor.getName() + " " + doctor.getLastName());
 //		}
-		list.setBounds(52, 440, 542, -331);
-		list.addMouseListener(new MouseAdapter() 
+//		list.setBounds(52, 440, 542, -331);
+////		panel.add(list);
+//		list.addMouseListener(new MouseAdapter() 
+//		{
+//			public void mouseClicked(MouseEvent mouseEvent) 
+//			{
+//				if(mouseEvent.getClickCount() == 2) 
+//				{
+//					int index = list.locationToIndex(mouseEvent.getPoint());
+//					btnDelete.setVisible(true);
+//					btnDelete.setText("Delete " + list.getModel().getElementAt(index));
+//					btnDelete.addActionListener(new ActionListener() 
+//					{
+//						@Override
+//						public void actionPerformed(ActionEvent ae)
+//						{
+//							
+//							for(int j = 0; j < patients.size(); ++j)
+//							{
+//								if(patients.get(j).getDoctorId() == doctors.get(index).getId())
+//									patients.remove(j);
+//							}
+//							patientXmlRW.write(patients);
+//							
+//							for(int j = 0; j < doctors.size(); ++j)
+//							{
+//								if(doctors.get(j).getId() == doctors.get(index).getId())
+//								{
+//									doctors.remove(j);
+//									break;
+//								}
+//							}
+//							doctorXmlRW.write(doctors);
+//							
+//						}
+//					});
+//				}
+//			}
+//		});
+//		frame.getContentPane().add(list);
+		
+//		JScrollPane scrollPane = new JScrollPane(list);
+//	      frame.getContentPane().add(scrollPane);
+//	      scrollPane.setBounds(113, 151, 641, 531);
+//	      scrollPane.setLayout(null);
+//	      scrollPane.setVisible(true);
+		
+		
+		DefaultListModel model2 = new DefaultListModel();
+	    JList list = new JList(model2);
+		
+	    int count = 0;
+		System.out.println(doctors.size());
+		for(Doctor doctor : doctors)
 		{
-			public void mouseClicked(MouseEvent mouseEvent) 
-			{
-				if(mouseEvent.getClickCount() == 2) 
+			model2.add(count++, doctor.getName() + " " + doctor.getLastName());
+		}
+		
+		
+		list.addMouseListener(new MouseAdapter() 
 				{
-					int index = list.locationToIndex(mouseEvent.getPoint());
-					btnDelete.setVisible(true);
-					btnDelete.setText("Delete " + list.getModel().getElementAt(index));
-					btnDelete.addActionListener(new ActionListener() 
+					public void mouseClicked(MouseEvent mouseEvent) 
 					{
-						@Override
-						public void actionPerformed(ActionEvent ae)
+						if(mouseEvent.getClickCount() == 2) 
 						{
-							XmlRW.doctorList.remove(index);
-							XmlRW.createNewXML();
+							int index = list.locationToIndex(mouseEvent.getPoint());
+							btnDelete.setVisible(true);
+							btnDelete.setText("Delete " + list.getModel().getElementAt(index));
+							btnDelete.addActionListener(new ActionListener() 
+							{
+								@Override
+								public void actionPerformed(ActionEvent ae)
+								{
+									
+									for(int j = 0; j < patients.size(); ++j)
+									{
+										if(patients.get(j).getDoctorId() == doctors.get(index).getId())
+											patients.remove(j);
+									}
+									patientXmlRW.write(patients);
+									
+									for(int j = 0; j < doctors.size(); ++j)
+									{
+										if(doctors.get(j).getId() == doctors.get(index).getId())
+										{
+											doctors.remove(j);
+											break;
+										}
+									}
+									doctorXmlRW.write(doctors);
+									
+								}
+							});
 						}
-					});
-				}
-			}
-		});
-		panel.add(list);
+					}
+				});
+		
+//		list.setBounds(52, 440, 542, -331);
+		list.setBounds(244, 275, 479, 278);
+		frame.getContentPane().add(list);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(6, 88, 117, 29);

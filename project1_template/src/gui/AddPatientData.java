@@ -30,6 +30,8 @@ public class AddPatientData {
 	private PatientXmlRW patientXmlRW;
 	private ArrayList<Patient> patients;
 	
+	private int patientId;
+	
 	
 	/* for AddNewDoctor.class */
 	public AddPatientData()
@@ -42,6 +44,7 @@ public class AddPatientData {
 	 */
 	public AddPatientData(int doctorId) 
 	{
+		setPatient();
 		initialize(doctorId);
 	}
 
@@ -173,22 +176,33 @@ public class AddPatientData {
 		group.add(femaleRadioButton);
 		
 		
+		ArrayList<String> records = new ArrayList<String>();
+		
+		if(!text_record1.getText().equals(""))
+			records.add(text_record1.getText());
+		if(!text_record2.getText().equals(""))
+			records.add(text_record2.getText());
+		if(!text_record3.getText().equals(""))
+			records.add(text_record3.getText());
+		if(!text_record4.getText().equals(""))
+			records.add(text_record4.getText());
+		
+		patientId = 1;
+		
+		if(patients.size() != 0)
+			patientId = patients.get(patients.size() - 1).getId();	
+		
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 		
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
-			{
-				ArrayList<String> records = new ArrayList<String>();
-				records.add(text_record1.getText());
-				records.add(text_record2.getText());
-				records.add(text_record3.getText());
-				records.add(text_record4.getText());
-
+			{			
+				
 				patients.add(
 						new Patient(text_name.getText(), 
 								text_lastName.getText(), 
-								patients.get(patients.size() - 1).getId(),
+								patientId,
 								doctorId,
 								group.getSelection().getActionCommand(),
 								text_disease.getText(),
@@ -220,8 +234,10 @@ public class AddPatientData {
 	
 	private void setPatient()
 	{
+		patientXmlRW = new PatientXmlRW();
 		patients = patientXmlRW.read();
 		
+
 	}
 	
 	

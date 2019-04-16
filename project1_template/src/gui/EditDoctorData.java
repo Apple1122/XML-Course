@@ -1,25 +1,31 @@
 package gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import data.Doctor;
+import xml.DoctorXmlRW;
+import javax.swing.SwingConstants;
 
 public class EditDoctorData {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField textField_name;
+	private JTextField textField_lastName;
+	private JTextField textField_gender;
+	private JTextField textField_subject;
+	
+	private DoctorXmlRW doctorXmlRW;
+	
+	private ArrayList<Doctor> doctors;
 
 	/**
 	 * Launch the application.
@@ -78,30 +84,47 @@ public class EditDoctorData {
 		lblSex.setBounds(205, 210, 70, 23);
 		frame.getContentPane().add(lblSex);
 		
-		textField = new JTextField();
-		textField.setBounds(351, 114, 150, 21);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		textField_name = new JTextField();
+		textField_name.setBounds(351, 114, 150, 21);
+		frame.getContentPane().add(textField_name);
+		textField_name.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(351, 142, 150, 21);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		textField_lastName = new JTextField();
+		textField_lastName.setBounds(351, 142, 150, 21);
+		frame.getContentPane().add(textField_lastName);
+		textField_lastName.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(351, 214, 150, 21);
-		frame.getContentPane().add(textField_2);
+		textField_gender = new JTextField();
+		textField_gender.setColumns(10);
+		textField_gender.setBounds(351, 214, 150, 21);
+		frame.getContentPane().add(textField_gender);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(351, 179, 150, 21);
-		frame.getContentPane().add(textField_3);
+		textField_subject = new JTextField();
+		textField_subject.setColumns(10);
+		textField_subject.setBounds(351, 179, 150, 21);
+		frame.getContentPane().add(textField_subject);
 		
+		doctors = doctorXmlRW.read();
+		
+		textField_name.setText(doctors.get(index).getName());
+		textField_lastName.setText(doctors.get(index).getLastName());
+		textField_gender.setText(doctors.get(index).getGender());
+		textField_subject.setText(doctors.get(index).getSubject());
+		
+	
 		JButton btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+		btnSave.setVisible(true);
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				 
+				doctors.get(index).setName(textField_name.getText());
+				doctors.get(index).setLastName(textField_lastName.getText());
+				doctors.get(index).setGender(textField_gender.getText());
+				doctors.get(index).setSubject(textField_subject.getText());
+				
+				doctorXmlRW.write(doctors);
+				
 				frame.dispose();
 				DoctorList.openVisible();
 			}
@@ -111,6 +134,7 @@ public class EditDoctorData {
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		btnCancel.setVisible(true);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -120,7 +144,9 @@ public class EditDoctorData {
 		btnCancel.setBounds(376, 617, 107, 41);
 		frame.getContentPane().add(btnCancel);
 		
-		JLabel label = new JLabel("New label");
+		JLabel label = new JLabel();
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setIcon(new ImageIcon("/Users/kylehuang/CCU/Courses/XML/project/XML-Course/project1_template/img/person.png"));
 		label.setBounds(34, 116, 150, 200);
 		frame.getContentPane().add(label);
 		
