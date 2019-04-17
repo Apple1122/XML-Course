@@ -23,7 +23,7 @@ public class PatientData {
 	private JLabel text_name;
 	private JLabel text_lastName;
 	private JLabel text_disease;
-	private JLabel[] text_record = new JLabel[4];
+	private JLabel text_medicalRecord;
 	private JLabel text_note;
 	private JLabel text_gender;
 
@@ -89,8 +89,8 @@ public class PatientData {
 		text_disease.setBounds(351, 165, 150, 21);
 		frame.getContentPane().add(text_disease);
 		
-		JLabel text_medicalRecord = new JLabel("New label");
-		text_medicalRecord.setBounds(361, 193, 61, 16);
+		text_medicalRecord = new JLabel();
+		text_medicalRecord.setBounds(361, 193, 174, 16);
 		frame.getContentPane().add(text_medicalRecord);
 		
 		JLabel lblNote = new JLabel("Note");
@@ -105,6 +105,7 @@ public class PatientData {
 		frame.getContentPane().add(text_note);
 		
 		JLabel label_photo = new JLabel();
+		label_photo.setHorizontalAlignment(SwingConstants.CENTER);
 		label_photo.setBounds(34, 116, 150, 200);
 		frame.getContentPane().add(label_photo);
 		
@@ -122,12 +123,9 @@ public class PatientData {
 		text_name.setText(patient.getName());
 		text_lastName.setText(patient.getLastName());
 		text_disease.setText(patient.getDisease());
+		text_disease.setVisible(true);
 		text_gender.setText(patient.getGender());
-		
-		String records = "";
-		for(String str : patient.getMedicalRecord())
-			records += " " + str;
-		text_medicalRecord.setText(records);
+		text_medicalRecord.setText(patient.getMedicalRecord());
 		
 		
 		text_note.setText(patient.getNote());

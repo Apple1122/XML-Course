@@ -101,7 +101,7 @@ public class AddPatientData {
 		text_disease.setColumns(10);
 		
 		text_record1 = new JTextField();
-		text_record1.setBounds(351, 192, 150, 21);
+		text_record1.setBounds(351, 192, 265, 61);
 		frame.getContentPane().add(text_record1);
 		text_record1.setColumns(10);
 		
@@ -110,40 +110,40 @@ public class AddPatientData {
 		lblNote.setBounds(256, 280, 70, 28);
 		frame.getContentPane().add(lblNote);
 		
-		text_record3 = new JTextField();
-		text_record3.setBounds(351, 221, 150, 21);
-		frame.getContentPane().add(text_record3);
-		text_record3.setColumns(10);
+//		text_record3 = new JTextField();
+//		text_record3.setBounds(351, 221, 150, 21);
+//		frame.getContentPane().add(text_record3);
+//		text_record3.setColumns(10);
+//		
+//		text_record2 = new JTextField();
+//		text_record2.setBounds(543, 192, 150, 21);
+//		frame.getContentPane().add(text_record2);
+//		text_record2.setColumns(10);
+//		
+//		text_record4 = new JTextField();
+//		text_record4.setBounds(543, 221, 150, 21);
+//		frame.getContentPane().add(text_record4);
+//		text_record4.setColumns(10);
 		
-		text_record2 = new JTextField();
-		text_record2.setBounds(543, 192, 150, 21);
-		frame.getContentPane().add(text_record2);
-		text_record2.setColumns(10);
-		
-		text_record4 = new JTextField();
-		text_record4.setBounds(543, 221, 150, 21);
-		frame.getContentPane().add(text_record4);
-		text_record4.setColumns(10);
-		
-		JLabel label = new JLabel("3.");
-		label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label.setBounds(340, 218, 22, 21);
-		frame.getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("1.");
-		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_1.setBounds(340, 195, 46, 15);
-		frame.getContentPane().add(label_1);
-		
-		JLabel label_3 = new JLabel("2.");
-		label_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_3.setBounds(523, 192, 46, 16);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("4.");
-		label_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		label_4.setBounds(523, 222, 46, 15);
-		frame.getContentPane().add(label_4);
+//		JLabel label = new JLabel("3.");
+//		label.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+//		label.setBounds(340, 218, 22, 21);
+//		frame.getContentPane().add(label);
+//		
+//		JLabel label_1 = new JLabel("1.");
+//		label_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+//		label_1.setBounds(340, 195, 46, 15);
+//		frame.getContentPane().add(label_1);
+//		
+//		JLabel label_3 = new JLabel("2.");
+//		label_3.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+//		label_3.setBounds(523, 192, 46, 16);
+//		frame.getContentPane().add(label_3);
+//		
+//		JLabel label_4 = new JLabel("4.");
+//		label_4.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+//		label_4.setBounds(523, 222, 46, 15);
+//		frame.getContentPane().add(label_4);
 		
 		text_note = new JTextField();
 		text_note.setBounds(256, 312, 488, 283);
@@ -176,16 +176,16 @@ public class AddPatientData {
 		group.add(femaleRadioButton);
 		
 		
-		ArrayList<String> records = new ArrayList<String>();
+//		ArrayList<String> records = new ArrayList<String>();
 		
-		if(!text_record1.getText().equals(""))
-			records.add(text_record1.getText());
-		if(!text_record2.getText().equals(""))
-			records.add(text_record2.getText());
-		if(!text_record3.getText().equals(""))
-			records.add(text_record3.getText());
-		if(!text_record4.getText().equals(""))
-			records.add(text_record4.getText());
+//		if(!(text_record1.getText().equals("") || text_record1.getText() == null))
+//			records.add(text_record1.getText() );
+//		if(!text_record2.getText().equals("") || text_record2.getText() == null)
+//			records.add(text_record2.getText());
+//		if(!text_record3.getText().equals("") || text_record3.getText() == null)
+//			records.add(text_record3.getText());
+//		if(!text_record4.getText().equals("") || text_record4.getText() == null)
+//			records.add(text_record4.getText());
 		
 		patientId = 1;
 		
@@ -206,7 +206,7 @@ public class AddPatientData {
 								doctorId,
 								group.getSelection().getActionCommand(),
 								text_disease.getText(),
-								records,
+								text_record1.getText(),
 								text_note.getText()
 								));
 				

@@ -81,7 +81,7 @@ public class PatientXmlRW {
 				private String gender;
 				private String disease;
 				private int doctorId;
-				private ArrayList<String> medicalRecord = new ArrayList<String>();
+				private String medicalRecord;
 				private String note;
 				
 				private boolean nameTime = false;
@@ -106,7 +106,7 @@ public class PatientXmlRW {
 					else if(qName.equals("lastname"))
 						lastNameTime = true;
 					
-					else if(qName.equals("diease"))
+					else if(qName.equals("disease"))
 						diseaseTime = true;
 					
 					else if(qName.equals("doctorId"))
@@ -115,7 +115,7 @@ public class PatientXmlRW {
 					else if(qName.equals("gender"))
 						genderTime = true;
 					
-					else if(qName.equals("record"))
+					else if(qName.equals("medicalrecords"))
 						medicalRecordTime = true;
 					
 					else if(qName.equals("note"))
@@ -158,9 +158,8 @@ public class PatientXmlRW {
 					}
 					else if(medicalRecordTime)
 					{
-						String record = new String(ch, start, length);
-						if(!(record.equals("") || record.isEmpty()))
-							medicalRecord.add(record);
+						medicalRecord = new String(ch, start, length);
+						medicalRecordTime = false;
 					}
 					
 					else if(noteTime)
@@ -173,13 +172,8 @@ public class PatientXmlRW {
 
 				public void endElement(String uri, String localName, String qName) throws SAXException 
 				{
-					if(qName.equals("medicalrecords"))
-						medicalRecordTime = false;
-					
-					else if(qName.equals("notes"))
-						noteTime = false;
-					
-					else if(qName.equals("patient")) 
+
+					if(qName.equals("patient")) 
 					{
 						patients.add(new Patient(name, lastName, id, doctorId, gender, disease, medicalRecord, note));
 						
@@ -245,12 +239,7 @@ public class PatientXmlRW {
 					
 					
 					xMLStreamWriter.writeStartElement("medicalrecords");
-					for(String record : p.getMedicalRecord())
-					{
-						xMLStreamWriter.writeStartElement("record");
-						xMLStreamWriter.writeCharacters(record);
-						xMLStreamWriter.writeEndElement();
-					}
+					xMLStreamWriter.writeCharacters(p.getMedicalRecord());
 					xMLStreamWriter.writeEndElement();
 					
 					xMLStreamWriter.writeStartElement("note");

@@ -10,13 +10,13 @@ public class Patient {
 	private int doctorId;
 	private String gender;
 	private String disease;
-	private ArrayList<String> medicalRecord;
+	private String medicalRecord;
 	private String note;
 	
 	
 	
 	public Patient(String name, String lastName, int id, int doctorId, String gender, String disease,
-			ArrayList<String> medicalRecord, String note) {
+			String medicalRecord, String note) {
 		this.name = name;
 		this.lastName = lastName;
 		this.id = id;
@@ -66,10 +66,10 @@ public class Patient {
 	public void setDisease(String disease) {
 		this.disease = disease;
 	}
-	public ArrayList<String> getMedicalRecord() {
+	public String getMedicalRecord() {
 		return medicalRecord;
 	}
-	public void setMedicalRecord(ArrayList<String> medicalRecord) {
+	public void setMedicalRecord(String medicalRecord) {
 		this.medicalRecord = medicalRecord;
 	}
 	public String getNote() {
