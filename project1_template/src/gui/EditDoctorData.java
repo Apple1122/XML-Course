@@ -23,7 +23,7 @@ public class EditDoctorData {
 	private JTextField textField_gender;
 	private JTextField textField_subject;
 	
-	private DoctorXmlRW doctorXmlRW;
+	private DoctorXmlRW doctorXmlRW = new DoctorXmlRW();
 	
 	private ArrayList<Doctor> doctors;
 
@@ -106,10 +106,10 @@ public class EditDoctorData {
 		
 		doctors = doctorXmlRW.read();
 		
-		textField_name.setText(doctors.get(index).getName());
-		textField_lastName.setText(doctors.get(index).getLastName());
-		textField_gender.setText(doctors.get(index).getGender());
-		textField_subject.setText(doctors.get(index).getSubject());
+		textField_name.setText(doctors.get(index - 1).getName());
+		textField_lastName.setText(doctors.get(index - 1).getLastName());
+		textField_gender.setText(doctors.get(index - 1).getGender());
+		textField_subject.setText(doctors.get(index - 1).getSubject());
 		
 	
 		JButton btnSave = new JButton("Save");
@@ -118,10 +118,10 @@ public class EditDoctorData {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 
-				doctors.get(index).setName(textField_name.getText());
-				doctors.get(index).setLastName(textField_lastName.getText());
-				doctors.get(index).setGender(textField_gender.getText());
-				doctors.get(index).setSubject(textField_subject.getText());
+				doctors.get(index - 1).setName(textField_name.getText());
+				doctors.get(index - 1).setLastName(textField_lastName.getText());
+				doctors.get(index - 1).setGender(textField_gender.getText());
+				doctors.get(index - 1).setSubject(textField_subject.getText());
 				
 				doctorXmlRW.write(doctors);
 				
