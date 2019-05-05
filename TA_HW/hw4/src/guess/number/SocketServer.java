@@ -65,13 +65,13 @@ public class SocketServer extends Thread{
 				
 				if(num == ans)
 				{
-					output.writeUTF("You are right!");
+					output.writeUTF("You are right!\n");
 					isAns = true;
 				}
 				else if(num > ans)
-					output.writeUTF("Your ans is bigger.");
+					output.writeUTF("Your ans is bigger.\n");
 				else
-					output.writeUTF("Your ans is smaller.");
+					output.writeUTF("Your ans is smaller.\n");
 				
 				output.flush();
 			}
