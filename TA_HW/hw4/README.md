@@ -1,5 +1,5 @@
 # Setup
-1. open command line and then enter the project
+1. open command line and then enter the directory of the project
 2. compile: write in command line <br />
 `$ javac src/guess/number/SocketServer.java`<br />
 `$ javac src/guess/number/SocketClient.java`<br />
