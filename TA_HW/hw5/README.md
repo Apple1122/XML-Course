@@ -10,7 +10,6 @@ Open cmd and do the script
 run server <br />
 `$chmod +x server.sh` <br />
 `$./server.sh` <br />
-
 run client <br />
 `$chmod +x client.sh` <br />
 `./client.sh` <br />
