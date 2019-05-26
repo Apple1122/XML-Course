@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Multiple server and client" default="jar" basedir=".">
+    <description>
+            description
+    </description>
+	
+	<property name="User" value="Kyle Huang"/>
+	<property name="homework" value="hw5" />
+	
+	<property name="project.dir" location="." />
+    <property name="src" location="src" /> 
+    <property name="build" location="build" /> 
+    <property name="dist" location="dist" /> 
+	
+	<target name="init">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
+	</target>
+	
+    <target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" includeAntRuntime="false" encoding="UTF-8"/>
+    </target>
+	
+	<target name="jar-server" depends="compile" description="create the server jar">
+		<jar destfile="${dist}/Server.jar">
+			<fileset dir="${build}">
+				<patternset>
+					<include name="server/**" />
+				</patternset>
+			</fileset>
+            <manifest>
+                <attribute name="Built-By" value="${User}"/>
+                <attribute name="Main-Class" value="server/MultiThreadedServer" />
+                <attribute name="Class-Path" value="" />
+            </manifest>
+		</jar>
+	</target>
+	
+	<target name="jar-client" depends="compile" description="create the client jar">
+		<jar destfile="${dist}/Client.jar">
+			<fileset dir="${build}">
+				<include name="client/**" />
+			</fileset>
+            <manifest>
+                <attribute name="Built-By" value="${User}" />
+                <attribute name="Main-Class" value="client/MultipleThreadClient" />
+                <attribute name="Class-Path" value="" />
+            </manifest>
+		</jar>
+	</target>
+	
+	 <target name="jar" depends="jar-server,jar-client" />
+	
+	<target name="run-server" depends="jar">
+		<java jar="${dist}/Server.jar" fork="true" />
+	</target>
+	
+	<target name="run-client" depends="jar">
+		<java jar="${dist}/Client.jar" fork="true" />
+	</target>
+	
+	<target name="clean" >
+		<delete dir="${build}" />
+		<delete file="${dist}/Server.jar" />
+		<delete file="${dist}/Client.jar" />
+	</target>
+	
+	<target name="submission" description="prepare for submission">
+		<tar destfile="${project.dir}/${homework}-${User}.rar">
+			<tarfileset dir=".">
+				<include name="**" />
+			</tarfileset>
+		</tar>
+	</target>
+	
+</project>
+
+
+
+
+
+
+
