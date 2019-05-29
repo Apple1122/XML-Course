@@ -3,23 +3,20 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 public class MultiThreadedServer implements Runnable{
 
-//	protected int          serverPort   = 5000;
-    protected ServerSocket serverSocket = null;
-    protected boolean      isStopped    = false;
-    protected Thread       runningThread= null;
-    private Scanner 	   in			= null;
-    private String 		   serverName	= null;
+    protected ServerSocket serverSocket  = null;
+    protected boolean      isStopped     = false;
+    protected Thread       runningThread = null;
+    private List<WorkerRunnable> clientList;
 	
 	public MultiThreadedServer()
 	{
-		in = new Scanner(System.in);
-		System.out.println("Please name the server: ");
-		this.serverName = in.nextLine();
+		clientList = new ArrayList<>();
 	}
 
 	@Override
@@ -33,17 +30,16 @@ public class MultiThreadedServer implements Runnable{
 		
 		while(!isStopped())
 		{
-			Socket clientSocket = null;
-			try {
-				clientSocket = this.serverSocket.accept();
-			} catch(IOException exc) {
-				
-			}
 			
-			// new Thread
-			new Thread( 
-					new WorkerRunnable(clientSocket, this.serverName) 
-					).start();
+			Socket clientSocket = null;
+			try 
+			{
+				this.addClient(serverSocket.accept());
+			} 
+			catch(IOException exc) 
+			{
+				exc.printStackTrace();
+			}
 			
 		}
 		System.out.println("Server Stopped.") ;
@@ -65,6 +61,13 @@ public class MultiThreadedServer implements Runnable{
         }
 	}
 	
+	public void addClient(Socket socket)
+	{
+		clientList.add(new WorkerRunnable(socket));
+
+	}
+	
+	
 	private void openServerSocket()
 	{
 		try {
@@ -79,13 +82,22 @@ public class MultiThreadedServer implements Runnable{
 
 	public static void main(String[] args)
 	{
+		Scanner in = new Scanner(System.in);
+
 		MultiThreadedServer server = new MultiThreadedServer();
+		// another thread to handle adding client
 		new Thread(server).start();
 
-//		try {
-//		    Thread.sleep(20 * 1000);
-//		} catch (InterruptedException e) {
-//		    e.printStackTrace();
-//		}
+		// main thread to handle send message 
+		while(true)
+		{
+			String message = in.nextLine();
+			
+			for(WorkerRunnable client : server.clientList)
+			{
+				client.sendMessage(message);
+			}
+		}
+
 	}
 }

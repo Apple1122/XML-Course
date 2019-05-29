@@ -30,43 +30,62 @@ public class MultipleThreadClient {
 				Socket socket = new Socket();
 				socket.connect(new InetSocketAddress(ip, port));
 				
-				socketList.add(socket);			
+//				socketList.add(socket);			
+				
+				new Thread()
+				{
+					public void run()
+					{
+						try {
+							DataInputStream input = new DataInputStream(socket.getInputStream());
+							
+							while(true)
+							{
+								System.out.println(input.readUTF());
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}.start();
 			} catch(Exception exc) {
 				
 			}
-			System.out.println("Keep going? (y/n) ");
-			String check = in.nextLine();
+//			System.out.println("Keep going? (y/n) ");
+//			String check = in.nextLine();
+//			
+//			if(check.equals("n"))
+//				isStopped = true;
 			
-			if(check.equals("n"))
-				isStopped = true;
+			
 			
 		}
 		in.close();
-		this.receiveAll();
+//		this.receiveAll();
 	}
 	
-	private void receiveAll()
-	{
-		for(Socket socket : socketList)
-		{
-			new Thread()
-			{
-				public void run()
-				{
-					try {
-						DataInputStream input = new DataInputStream(socket.getInputStream());
-						
-						while(true)
-						{
-							System.out.println(input.readUTF());
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}.start();
-		}
-	}
+//	private void receiveAll()
+//	{
+//		for(Socket socket : socketList)
+//		{
+//			new Thread()
+//			{
+//				public void run()
+//				{
+//					try {
+//						DataInputStream input = new DataInputStream(socket.getInputStream());
+//						
+//						while(true)
+//						{
+//							System.out.println(input.readUTF());
+//						}
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//				}
+//			}.start();
+//		}
+//	}
 
 	public static void main(String[] args)
 	{

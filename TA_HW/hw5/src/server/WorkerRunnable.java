@@ -6,21 +6,40 @@ import java.net.Socket;
 
 public class WorkerRunnable implements Runnable{
 
-	protected Socket clientSocket = null;
-	protected String serverName   = null;
+	protected Socket clientSocket 	= null;
+	protected String serverName   	= null;
+	private DataOutputStream output = null;
 	
-	
-	public WorkerRunnable(Socket socket, String serverName)
+	public WorkerRunnable(Socket socket)
 	{
 		this.clientSocket = socket;
-		this.serverName = serverName;
+		
+		try 
+		{
+			output = new DataOutputStream(socket.getOutputStream());
+		} 
+		catch (IOException e) {
+						e.printStackTrace();
+		}
+	}
+	
+	public void sendMessage(String messsage)
+	{
+		try 
+		{
+			output.writeUTF(messsage);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public void run() 
 	{
 		try {
-			DataOutputStream output = new DataOutputStream(this.clientSocket.getOutputStream());
+//			 output = new DataOutputStream(this.clientSocket.getOutputStream());
 			
 			while(true)
 			{
@@ -35,5 +54,7 @@ public class WorkerRunnable implements Runnable{
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 }
