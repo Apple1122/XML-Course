@@ -88,7 +88,13 @@ public class MultiThreadedServer implements Runnable{
 		MultiThreadedServer server = new MultiThreadedServer();
 		// another thread to handle adding client
 		new Thread(server).start();
-
+		
+		Thread main = Thread.currentThread();
+		try {
+			main.sleep(1000);
+		} catch (InterruptedException e) {
+						e.printStackTrace();
+		}
 		// main thread to handle send message 
 		while(true)
 		{
