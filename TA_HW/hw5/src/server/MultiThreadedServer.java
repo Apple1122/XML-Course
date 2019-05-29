@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import server.WorkerRunnable;
 
 public class MultiThreadedServer implements Runnable{
 
@@ -91,6 +92,7 @@ public class MultiThreadedServer implements Runnable{
 		// main thread to handle send message 
 		while(true)
 		{
+			System.out.println("input message: ");
 			String message = in.nextLine();
 			
 			for(WorkerRunnable client : server.clientList)
