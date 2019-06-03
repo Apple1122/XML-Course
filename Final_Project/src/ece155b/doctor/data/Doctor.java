@@ -55,4 +55,24 @@ public class Doctor {
     {
         
     }
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getLastName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getSubject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getAppointment() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

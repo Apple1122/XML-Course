@@ -16,7 +16,7 @@ public class Doctor extends JFrame {
 	private JTextField textField_lastName;
 	private JTextField textField_subject;
 
-	public Doctor() {
+	public Doctor(String name, String lastName, String subject, String gender) {
 		setFont(null);
 		setResizable(false);
 		setBounds(0, 0, 580, 630);
@@ -117,4 +117,7 @@ public class Doctor extends JFrame {
 		btnAppointmentDelete.setBounds(268, 531, 107, 23);
 		getContentPane().add(btnAppointmentDelete);
 	}
+
+	
+
 }
