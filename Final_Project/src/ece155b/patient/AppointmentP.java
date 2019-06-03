@@ -11,7 +11,8 @@ import javax.swing.JTextField;
 public class AppointmentP extends JFrame{
 public AppointmentP() {
 getContentPane().setLayout(null);
-	
+setResizable(false);
+setBounds(0, 0, 580, 630);
 	JLabel lblAppointment = new JLabel("Appointment");
 	lblAppointment.setFont(new Font("UD Digi Kyokasho NP-B", Font.PLAIN, 19));
 	lblAppointment.setBounds(48, 35, 141, 65);

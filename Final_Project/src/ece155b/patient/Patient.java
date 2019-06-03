@@ -18,7 +18,8 @@ public class Patient extends JFrame{
 	private JTextField textField_4;
 public Patient() {
 	getContentPane().setLayout(null);
-	
+	setResizable(false);
+	setBounds(0, 0, 580, 630);
 	JLabel lblPatient = new JLabel("Patient");
 	lblPatient.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 20));
 	lblPatient.setBounds(29, 25, 88, 47);

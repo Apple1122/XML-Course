@@ -17,7 +17,7 @@ public class ConnHandler extends Thread {
     public ConnHandler(DoctorApp docApp, int PortNo) {
         try {
             server = docApp;
-            servers     = new ServerSocket(PortNo);
+            servers = new ServerSocket(PortNo);
             handles = new Vector <ConnListener>();
             
             start();

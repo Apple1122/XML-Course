@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AppointmentD extends JFrame{
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField note_textField;
 public AppointmentD() {
+	setResizable(false);
+	setBounds(0, 0, 580, 630);
 	getContentPane().setLayout(null);
 	
 	JLabel lblAppointment = new JLabel("Appointment");
@@ -23,42 +23,32 @@ public AppointmentD() {
 	
 	JLabel lblDate = new JLabel("Date :");
 	lblDate.setFont(new Font("UD Digi Kyokasho NP-R", Font.PLAIN, 16));
-	lblDate.setBounds(58, 110, 63, 25);
+	lblDate.setBounds(58, 110, 79, 25);
 	getContentPane().add(lblDate);
 	
-	JLabel lblDoctorName = new JLabel("Patient Name :");
+	JLabel lblDoctorName = new JLabel("Patient:");
 	lblDoctorName.setFont(new Font("UD Digi Kyokasho NP-R", Font.PLAIN, 16));
-	lblDoctorName.setBounds(58, 145, 118, 25);
+	lblDoctorName.setBounds(58, 145, 79, 25);
 	getContentPane().add(lblDoctorName);
-	
-	textField = new JTextField();
-	textField.setBounds(178, 113, 96, 21);
-	getContentPane().add(textField);
-	textField.setColumns(10);
-	
-	textField_1 = new JTextField();
-	textField_1.setBounds(186, 148, 96, 21);
-	getContentPane().add(textField_1);
-	textField_1.setColumns(10);
 	
 	JLabel lblNote = new JLabel("Note :");
 	lblNote.setFont(new Font("UD Digi Kyokasho NP-R", Font.PLAIN, 16));
 	lblNote.setBounds(58, 180, 63, 25);
 	getContentPane().add(lblNote);
 	
-	textField_2 = new JTextField();
-	textField_2.setBounds(178, 183, 228, 132);
-	getContentPane().add(textField_2);
-	textField_2.setColumns(10);
+	note_textField = new JTextField();
+	note_textField.setBounds(142, 183, 264, 132);
+	getContentPane().add(note_textField);
+	note_textField.setColumns(10);
 	
 	JLabel lblPrescription = new JLabel("Prescription :");
 	lblPrescription.setFont(new Font("UD Digi Kyokasho NP-R", Font.PLAIN, 16));
-	lblPrescription.setBounds(58, 329, 118, 25);
+	lblPrescription.setBounds(58, 329, 107, 25);
 	getContentPane().add(lblPrescription);
 	
-	JList list = new JList();
-	list.setBounds(178, 334, 228, 166);
-	getContentPane().add(list);
+	JList prescriptionList = new JList();
+	prescriptionList.setBounds(178, 334, 228, 166);
+	getContentPane().add(prescriptionList);
 	
 	JButton btnAdd = new JButton("add");
 	btnAdd.addActionListener(new ActionListener() {
@@ -83,6 +73,19 @@ public AppointmentD() {
 	button_3.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 16));
 	button_3.setBounds(411, 147, 119, 23);
 	getContentPane().add(button_3);
+	
+	JButton button = new JButton("enter");
+	button.setFont(new Font("Dialog", Font.PLAIN, 16));
+	button.setBounds(418, 396, 107, 23);
+	getContentPane().add(button);
+	
+	JLabel label_date = new JLabel("");
+	label_date.setBounds(163, 115, 134, 16);
+	getContentPane().add(label_date);
+	
+	JLabel label_patient = new JLabel("");
+	label_patient.setBounds(163, 150, 134, 16);
+	getContentPane().add(label_patient);
 	
 }
 }

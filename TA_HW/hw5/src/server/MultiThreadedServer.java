@@ -29,8 +29,8 @@ public class MultiThreadedServer implements Runnable{
 		}
 		this.openServerSocket();
 		
-		while(!isStopped())
-		{
+//		while(!isStopped())
+//		{
 			
 			Socket clientSocket = null;
 			try 
@@ -42,7 +42,7 @@ public class MultiThreadedServer implements Runnable{
 				exc.printStackTrace();
 			}
 			
-		}
+//		}
 		System.out.println("Server Stopped.") ;
 	
 	}	

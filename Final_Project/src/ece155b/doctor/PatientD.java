@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 
 public class PatientD extends JFrame  {
 public PatientD() {
+	setResizable(false);
+	setBounds(0, 0, 580, 630);
+	
 	getContentPane().setLayout(null);
 	JLabel lblPatient = new JLabel("Patient");
 	lblPatient.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 20));
@@ -39,7 +42,7 @@ public PatientD() {
 	
 	JLabel label_2 = new JLabel("Appointment List :");
 	label_2.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 16));
-	label_2.setBounds(39, 208, 174, 86);
+	label_2.setBounds(39, 235, 119, 23);
 	getContentPane().add(label_2);
 	
 	JButton button = new JButton("enter");
@@ -73,28 +76,28 @@ public PatientD() {
 	
 	JLabel lblPhone = new JLabel("Phone :");
 	lblPhone.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 16));
-	lblPhone.setBounds(39, 198, 119, 37);
+	lblPhone.setBounds(39, 198, 82, 37);
 	getContentPane().add(lblPhone);
 	
-	JLabel lblNewLabel = new JLabel("New label");
-	lblNewLabel.setBounds(153, 88, 46, 15);
-	getContentPane().add(lblNewLabel);
+	JLabel label_name = new JLabel("New label");
+	label_name.setBounds(153, 88, 119, 15);
+	getContentPane().add(label_name);
 	
-	JLabel label_3 = new JLabel("New label");
-	label_3.setBounds(153, 119, 46, 15);
-	getContentPane().add(label_3);
+	JLabel label_lastName = new JLabel("New label");
+	label_lastName.setBounds(153, 119, 107, 15);
+	getContentPane().add(label_lastName);
 	
-	JLabel label_4 = new JLabel("New label");
-	label_4.setBounds(153, 154, 46, 15);
-	getContentPane().add(label_4);
+	JLabel label_address = new JLabel("New label");
+	label_address.setBounds(153, 150, 119, 15);
+	getContentPane().add(label_address);
 	
-	JLabel label_5 = new JLabel("New label");
-	label_5.setBounds(153, 178, 46, 15);
-	getContentPane().add(label_5);
+	JLabel label_birth = new JLabel("New label");
+	label_birth.setBounds(153, 178, 119, 15);
+	getContentPane().add(label_birth);
 	
-	JLabel label_6 = new JLabel("New label");
-	label_6.setBounds(153, 208, 46, 15);
-	getContentPane().add(label_6);
+	JLabel label_phone = new JLabel("New label");
+	label_phone.setBounds(153, 208, 88, 15);
+	getContentPane().add(label_phone);
 	
 }
 

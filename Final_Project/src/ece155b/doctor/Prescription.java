@@ -10,7 +10,8 @@ public class Prescription extends JFrame{
 	private JTextField textField;
 	public Prescription() {
 		getContentPane().setLayout(null);
-		
+		setResizable(false);
+		setBounds(0, 0, 580, 630);
 		JLabel lblPrescription = new JLabel("Prescription");
 		lblPrescription.setFont(new Font("UD Digi Kyokasho NP-B", Font.PLAIN, 19));
 		lblPrescription.setBounds(38, 36, 141, 65);
