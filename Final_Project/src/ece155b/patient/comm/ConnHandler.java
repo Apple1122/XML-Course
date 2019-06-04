@@ -2,7 +2,7 @@ package ece155b.patient.comm;
 
 import ece155b.common.Common;
 import ece155b.common.Message;
-import ece155b.patient.PatientApp;
+import ece155b.patient.TAPatientApp;
 import ece155b.patient.data.DoctorContact;
 
 import java.net.*;
@@ -10,9 +10,9 @@ import java.util.Vector;
 
 public class ConnHandler {
     Vector<ConnListener> doctors;   // vector that keeps track of connected clients
-    PatientApp pApp;
+    TAPatientApp pApp;
     
-    public ConnHandler(PatientApp Appl) {
+    public ConnHandler(TAPatientApp Appl) {
         doctors = new Vector <ConnListener>();
         pApp = Appl;
     }

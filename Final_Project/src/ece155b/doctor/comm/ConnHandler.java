@@ -126,7 +126,7 @@ public class ConnHandler extends Thread {
          */
             if(msg.type.equals(Common.BROADCAST))
             {
-                server.append(msg.toString());
+//                server.append(msg.toString());
             }
             else if(msg.type.equals(Common.AUTHENTICATE_PATIENT))
             {

@@ -1,23 +1,24 @@
-package server;
+package ece155b.top.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import server.WorkerRunnable;
+import java.util.Vector;
 
-public class MultiThreadedServer implements Runnable{
+import ece155b.doctor.data.Doctor;
 
-    protected ServerSocket serverSocket  = null;
+
+public class TopServer implements Runnable{
+
+	protected ServerSocket serverSocket  = null;
     protected boolean      isStopped     = false;
     protected Thread       runningThread = null;
-    private List<WorkerRunnable> clientList;
+    private Vector<Doctor> doctors;
 	
-	public MultiThreadedServer()
+	public TopServer()
 	{
-		clientList = new ArrayList<>();
+		doctors = new Vector<>();
 	}
 
 	@Override
@@ -32,7 +33,6 @@ public class MultiThreadedServer implements Runnable{
 		while(!isStopped())
 		{
 			
-			Socket clientSocket = null;
 			try 
 			{
 				this.addClient(serverSocket.accept());
@@ -64,8 +64,7 @@ public class MultiThreadedServer implements Runnable{
 	
 	public void addClient(Socket socket)
 	{
-		clientList.add(new WorkerRunnable(socket));
-
+		this.doctors.add(new Doctor());
 	}
 	
 	
@@ -85,7 +84,7 @@ public class MultiThreadedServer implements Runnable{
 	{
 		Scanner in = new Scanner(System.in);
 
-		MultiThreadedServer server = new MultiThreadedServer();
+		TopServer server = new TopServer();
 		// another thread to handle adding client
 		new Thread(server).start();
 		
@@ -101,10 +100,7 @@ public class MultiThreadedServer implements Runnable{
 			System.out.println("input message: ");
 			String message = in.nextLine();
 			
-			for(WorkerRunnable client : server.clientList)
-			{
-				client.sendMessage(message);
-			}
+
 		}
 
 	}
