@@ -1,107 +1,130 @@
 package ece155b.top.server;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import ece155b.doctor.data.Doctor;
 
-
 public class TopServer implements Runnable{
 
-	protected ServerSocket serverSocket  = null;
-    protected boolean      isStopped     = false;
-    protected Thread       runningThread = null;
-    private Vector<Doctor> doctors;
-	
+	private ServerSocket 	  serverSocket   		= null;
+	private static ArrayList<Doctor> doctorList     		= null;
+	private static ArrayList<PatientRunnable> patients  	= null;
+	private int 			  portForDoctors 		= 6125;
+	private DoctorToTopServerRW doctorToTopServerRW;
+    public BufferedWriter bwrite;
+    public BufferedReader bread;
+
+
 	public TopServer()
 	{
-		doctors = new Vector<>();
+		doctorList = new ArrayList<>();
+		doctorToTopServerRW = new DoctorToTopServerRW();
 	}
-
+	
 	@Override
-	public void run() 
-	{
-		synchronized(this)
-		{
-			runningThread = Thread.currentThread();
-		}
-		this.openServerSocket();
+	public void run() {	
 		
-		while(!isStopped())
-		{
-			
-			try 
-			{
-				this.addClient(serverSocket.accept());
-			} 
-			catch(IOException exc) 
-			{
-				exc.printStackTrace();
-			}
-			
-		}
-		System.out.println("Server Stopped.") ;
-	
-	}	
-	
-	private synchronized boolean isStopped()
-	{
-		return this.isStopped;
-	}
-	
-	public synchronized void stop()
-	{
-		this.isStopped = true;
-        try {
-            this.serverSocket.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Error closing server", e);
-        }
-	}
-	
-	public void addClient(Socket socket)
-	{
-		this.doctors.add(new Doctor());
-	}
-	
-	
-	private void openServerSocket()
-	{
 		try {
-			serverSocket = new ServerSocket(5000 + (int)(Math.random() * 1000 + 1));
-			System.out.println("listening port: " + serverSocket.getLocalPort());
+			serverSocket = new ServerSocket(portForDoctors);
 			
+			while(true)
+			{
+				Socket doctorSocket = serverSocket.accept();
+				
+				bwrite = new BufferedWriter(new OutputStreamWriter(doctorSocket.getOutputStream(), "UTF-8"));
+		        bread = new BufferedReader(new InputStreamReader(doctorSocket.getInputStream(), "UTF-8"));
+		        
+		        new Thread()
+		        {
+		        	public void run()
+		        	{
+						while (true) {
+							try {
+								String message = bread.readLine();
+								if (message != null) {
+									receiveDoctor(message);
+//									System.out.println(message);
+//									doctorSocket.close();
+									showDoctor();
+									break;
+								}
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+
+						}
+		 		       
+		        	}
+		        }.start();
+		      
+				
+				System.out.println("Register Successful!");
+				
+				// trigger function broadcast() to all patients
+				this.broadcast();
+				
+			}
+	
 		} catch(Exception exc) {
-			this.openServerSocket();
 			exc.printStackTrace();
 		}
 	}
+	
+	private void receiveDoctor(String message)
+	{
+		doctorList.add(doctorToTopServerRW.read(message));
+//		System.out.println(message);
+	}
 
+	private void broadcast()
+	{
+		if(patients != null)
+			for(PatientRunnable patient : patients)
+			patient.sendMessage(doctorList);
+	}
+	
+//	public static void addPatientRunnable(Socket socket)
+//	{
+//		patients.add(new PatientRunnable(socket));
+//	}
+	
+	public void showDoctor()
+	{
+		System.out.println(doctorList.get(0).getName());
+	}
+	
 	public static void main(String[] args)
 	{
-		Scanner in = new Scanner(System.in);
-
-		TopServer server = new TopServer();
-		// another thread to handle adding client
-		new Thread(server).start();
-		
-		Thread main = Thread.currentThread();
+		new Thread(new TopServer()).start();
 		try {
-			main.sleep(1000);
-		} catch (InterruptedException e) {
+			// the server use to connect patients
+			ServerSocket patientServer = new ServerSocket(6120);
+			patients = new ArrayList<>();
+			while(true)
+			{
+				Socket socket = patientServer.accept();
+				
+				if(socket != null)
+				{
+					patients.add(new PatientRunnable(socket, doctorList));
+				}
+			}
+
+			
+			
+			
+		} catch (IOException e) {
 						e.printStackTrace();
 		}
-		// main thread to handle send message 
-		while(true)
-		{
-			System.out.println("input message: ");
-			String message = in.nextLine();
-			
-
-		}
-
+		
 	}
+
+	
 }

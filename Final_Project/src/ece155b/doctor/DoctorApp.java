@@ -1,25 +1,78 @@
 package ece155b.doctor;
 
-import javax.swing.JFrame;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JList;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextField;
+
+import ece155b.doctor.data.Doctor;
+import ece155b.top.server.DoctorToTopServerRW;
 
 public class DoctorApp extends JFrame {
 	private JTextField textField_name;
 	private JTextField textField_lastName;
 	private JTextField textField_subject;
-
+	
+	private Socket socket = null;
+	private String topServerIp = "127.0.0.1";
+	private int topServerPort = 6125;
+	private DoctorToTopServerRW doctorToTopServerRW = null;
+	
+	private Doctor doctor;
+	private ServerSocket doctorServer = null;
+	private int doctorPort; 
+    public BufferedWriter bwrite;
+    public BufferedReader bread;
+	
 	public DoctorApp() {
+		doctorToTopServerRW = new DoctorToTopServerRW();
+		socket = new Socket();
+		
+		this.openDoctorServer();
+		
+		
+		
+		try {
+			new Thread() {
+				
+				public void run()
+				{
+					try {
+						Socket patientSocket = doctorServer.accept();
+						
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}.start();
+			socket.connect(new InetSocketAddress(topServerIp, topServerPort));
+			bwrite = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+	        bread = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		setFont(null);
 		setResizable(false);
 		setBounds(0, 0, 580, 630);
+		setVisible(true);
 
 		getContentPane().setBackground(new Color(240, 240, 240));
 		getContentPane().setFont(new Font("新細明體", Font.PLAIN, 18));
@@ -29,6 +82,16 @@ public class DoctorApp extends JFrame {
 		btnSave.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 16));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				doctor = new Doctor(textField_name.getText(), textField_lastName.getText(), doctorPort, textField_subject.getText());
+				
+				try {
+					DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+					bwrite.write(doctorToTopServerRW.write(doctor));
+					bwrite.newLine();
+					bwrite.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				
 			}
 		});
@@ -116,5 +179,23 @@ public class DoctorApp extends JFrame {
 		btnAppointmentDelete.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 16));
 		btnAppointmentDelete.setBounds(268, 531, 107, 23);
 		getContentPane().add(btnAppointmentDelete);
+	}
+	
+	public static void main(String[] args)
+	{
+		new DoctorApp();
+	}
+	
+	private synchronized void openDoctorServer()
+	{
+		try {
+			doctorServer = new ServerSocket(5000 + (int)(Math.random() * 1000 + 1));
+			System.out.println("listening port: " + doctorServer.getLocalPort());
+			doctorPort = doctorServer.getLocalPort();
+			
+		} catch(Exception exc) {
+			this.openDoctorServer();
+			exc.printStackTrace();
+		}
 	}
 }

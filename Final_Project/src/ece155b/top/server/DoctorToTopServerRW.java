@@ -1,6 +1,7 @@
-package ece155b.doctor.xml;
+package ece155b.top.server;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,6 +12,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -51,7 +53,7 @@ public class DoctorToTopServerRW extends DefaultHandler{
 		str = "";
 	
 		try {
-			saxParser.parse(message, this);
+			saxParser.parse(new InputSource(new StringReader(message)), this);
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
@@ -80,6 +82,10 @@ public class DoctorToTopServerRW extends DefaultHandler{
 			
 			xmlStreamWriter.writeStartElement("lastName");
 			xmlStreamWriter.writeCharacters(newDoctor.getLastName());
+			xmlStreamWriter.writeEndElement();
+			
+			xmlStreamWriter.writeStartElement("subject");
+			xmlStreamWriter.writeCharacters(newDoctor.getSubject());
 			xmlStreamWriter.writeEndElement();
 			
 			xmlStreamWriter.writeEndElement();
@@ -114,6 +120,8 @@ public class DoctorToTopServerRW extends DefaultHandler{
 			name = str;
 		else if(qName.equals("lastName"))
 			lastName = str;	
+		else if(qName.equals(subject))
+			subject = str;
 	}
 	
 	

@@ -1,11 +1,9 @@
 package ece155b.doctor.data;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
-import javax.swing.JFileChooser;
 
 public class Doctor {
     
@@ -15,11 +13,12 @@ public class Doctor {
     private String subject;
     
     public File file;
-    Vector <Patient> patients;
+    ArrayList<Appointment> appointments; 
+    ArrayList<Patient> patients;
     
     public Doctor()
     {
-        patients = new Vector<Patient>();
+    	appointments = new ArrayList<Appointment>();
     }
       
     public Doctor(String name, String lastName, int port, String subject) {
@@ -31,7 +30,7 @@ public class Doctor {
 
 	public void addPatient(Patient patient)
     {
-        
+        patients.add(patient);
     }
     
     public void save()
@@ -41,11 +40,19 @@ public class Doctor {
     
     public String toXML()
     {
-        String xml = "<Doctor>";
-        
-	xml += "</Doctor>";
-        
-        return xml;
+    	String xml = "<Doctor>";
+		xml += "<port>" + port +"</port>";
+		xml += "<name>" + name + "</name>";
+		xml += "<lastName>" + lastName + "</lastName>";
+		xml += "<subject>" + subject + "</subject>";
+		xml += "<Appointments>";
+		for (Appointment app : appointments) {
+			xml += app.toXml();
+		}
+		xml += "</Appointments>";
+		xml += "</Doctor>";
+
+		return xml;
     }
     
         
@@ -105,13 +112,23 @@ public class Doctor {
 		this.file = file;
 	}
 
-	public Vector<Patient> getPatients() {
+	public ArrayList<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(ArrayList<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+	public ArrayList<Patient> getPatients() {
 		return patients;
 	}
 
-	public void setPatients(Vector<Patient> patients) {
+	public void setPatients(ArrayList<Patient> patients) {
 		this.patients = patients;
 	}
+
+	
     
     
 }
