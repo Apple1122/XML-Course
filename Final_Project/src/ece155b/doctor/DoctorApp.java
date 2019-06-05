@@ -21,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 
 import ece155b.doctor.data.Doctor;
+import ece155b.doctor.data.Patient;
 import ece155b.top.server.DoctorToTopServerRW;
 
 public class DoctorApp extends JFrame {
@@ -48,20 +49,6 @@ public class DoctorApp extends JFrame {
 		
 		
 		try {
-			new Thread() {
-				
-				public void run()
-				{
-					try {
-						Socket patientSocket = doctorServer.accept();
-						
-						
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				
-			}.start();
 			socket.connect(new InetSocketAddress(topServerIp, topServerPort));
 			bwrite = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
 	        bread = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
@@ -92,6 +79,30 @@ public class DoctorApp extends JFrame {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
+				new Thread() {
+					
+					public void run()
+					{
+						try {
+							while(true)
+							{
+								Socket patientSocket = doctorServer.accept();
+								
+								if(patientSocket != null)
+								{
+									doctor = new Doctor(textField_name.getText(), textField_lastName.getText(), doctorPort, textField_subject.getText());
+									doctor.addPatient(new Patient(patientSocket));
+									
+								}
+								
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					
+				}.start();
 				
 			}
 		});

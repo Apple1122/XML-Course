@@ -83,7 +83,7 @@ public class TopServerToPatientRW {
 					else if(qName.equals("lastName"))
 						lastName = str;	
 					else if(qName.equals("subject"))
-						subject = "something";
+						subject = str;
 				}
 			};
 			saxParser.parse(new InputSource(new StringReader(message)), handler);

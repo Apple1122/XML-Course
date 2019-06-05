@@ -18,10 +18,11 @@ public class Doctor {
     
     public Doctor()
     {
-    	appointments = new ArrayList<Appointment>();
     }
       
     public Doctor(String name, String lastName, int port, String subject) {
+    	patients = new ArrayList<>();
+    	appointments = new ArrayList<>();
 		this.name = name;
 		this.lastName = lastName;
 		this.port = port;
@@ -31,6 +32,7 @@ public class Doctor {
 	public void addPatient(Patient patient)
     {
         patients.add(patient);
+        patient.sendMessage(this.toXML());
     }
     
     public void save()
@@ -128,7 +130,5 @@ public class Doctor {
 		this.patients = patients;
 	}
 
-	
-    
     
 }

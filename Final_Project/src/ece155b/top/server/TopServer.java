@@ -53,7 +53,7 @@ public class TopServer implements Runnable{
 //									System.out.println(message);
 //									doctorSocket.close();
 									showDoctor();
-									break;
+//									break;
 								}
 							} catch (IOException e) {
 								e.printStackTrace();
@@ -80,6 +80,7 @@ public class TopServer implements Runnable{
 	private void receiveDoctor(String message)
 	{
 		doctorList.add(doctorToTopServerRW.read(message));
+		this.broadcast();
 //		System.out.println(message);
 	}
 
@@ -87,7 +88,7 @@ public class TopServer implements Runnable{
 	{
 		if(patients != null)
 			for(PatientRunnable patient : patients)
-			patient.sendMessage(doctorList);
+				patient.sendMessage(doctorList);
 	}
 	
 //	public static void addPatientRunnable(Socket socket)
@@ -97,7 +98,7 @@ public class TopServer implements Runnable{
 	
 	public void showDoctor()
 	{
-		System.out.println(doctorList.get(0).getName());
+		System.out.println(doctorList.get(doctorList.size() - 1).getName());
 	}
 	
 	public static void main(String[] args)
@@ -114,6 +115,11 @@ public class TopServer implements Runnable{
 				if(socket != null)
 				{
 					patients.add(new PatientRunnable(socket, doctorList));
+				}
+				
+				for(PatientRunnable patient : patients)
+				{
+					patient.sendMessage(doctorList);
 				}
 			}
 

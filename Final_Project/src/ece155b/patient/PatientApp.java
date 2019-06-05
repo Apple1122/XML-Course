@@ -68,26 +68,6 @@ public class PatientApp extends JFrame {
 
 		setVisible(true);
 
-//		while (true) {
-//
-//			try {
-//				String message = bread.readLine();
-//				
-//				if (message != null) {
-//					doctors = topServerToPatientRW.read(message);
-//					System.out.println(doctors.get(0).getLastName());
-//					break;
-//				}
-//			} catch (IOException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//
-//
-//		}
-		
-
-
 		JLabel lblPatient = new JLabel("Patient");
 		lblPatient.setFont(new Font("UD Digi Kyokasho NK-B", Font.PLAIN, 20));
 		lblPatient.setBounds(29, 25, 88, 47);
@@ -202,6 +182,9 @@ public class PatientApp extends JFrame {
 						System.out.println(message);
 
 						doctors = topServerToPatientRW.read(message);
+//						bwrite.write("I receive message.");
+//						bwrite.newLine();
+//						bwrite.flush();
 						
 						if (doctors.size() != 0) {
 							System.out.println(doctors.get(0).getLastName());
@@ -213,6 +196,7 @@ public class PatientApp extends JFrame {
 					e1.printStackTrace();
 				}
 				
+				model.removeAllElements();	
 				int count = 0;
 				for(Doctor doctor : doctors)
 				{

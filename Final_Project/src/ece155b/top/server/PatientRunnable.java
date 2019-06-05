@@ -39,6 +39,7 @@ public class PatientRunnable implements Runnable{
 	        	bwrite.write(topServerToPatientRW.write(doctorList));
 	        	bwrite.newLine();
 	        	bwrite.flush();
+	        	break;
 	        }
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,6 +63,16 @@ public class PatientRunnable implements Runnable{
 		}
 	}
 	
+	public boolean receiveMessage()
+	{
+		try {
+			if(bread.readLine() != null)
+				return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	
 	

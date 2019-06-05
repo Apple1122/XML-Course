@@ -12,27 +12,51 @@ import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+
+import ece155b.common.DoctorInfoParser;
+import ece155b.doctor.data.Appointment;
+import ece155b.doctor.data.Doctor;
 
 public class DoctorPage extends JFrame {
 	
 	private Socket socket;
 	private String doctorIp = "127.0.0.1";
 	private int doctorPort;
+	private Doctor doctor;
+	
+	private DoctorInfoParser doctorInfoParser;
     public BufferedWriter bwrite;
     public BufferedReader bread;
+    
+   
 	
 	public DoctorPage(int port) {
 		
+		doctorInfoParser = new DoctorInfoParser();
 		doctorPort = port;
+		socket = new Socket();
 		
 		try {
 			socket.connect(new InetSocketAddress(doctorIp, doctorPort));
 			bwrite = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
 	        bread = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+	        
+	        while(true)
+	        {
+	        	String message = bread.readLine();
+	        	
+	        	if(message != null)
+	        	{
+	        		doctor = doctorInfoParser.read(message);
+	        		break;
+	        	}
+	        		
+	        }
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -71,7 +95,8 @@ public class DoctorPage extends JFrame {
 		lblAppointmentList.setBounds(36, 170, 174, 86);
 		getContentPane().add(lblAppointmentList);
 
-		JList list_1 = new JList();
+		DefaultListModel model = new DefaultListModel();
+		JList list_1 = new JList(model);
 		list_1.setBounds(36, 240, 468, 171);
 		getContentPane().add(list_1);
 
@@ -103,5 +128,34 @@ public class DoctorPage extends JFrame {
 		btnFinish.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		btnFinish.setBounds(368, 473, 117, 29);
 		getContentPane().add(btnFinish);
+		
+		JButton btnUpdate = new JButton("update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					while (true) {
+						String message;
+
+						message = bread.readLine();
+
+						if (message != null) {
+							doctor = doctorInfoParser.read(message);
+							break;
+						}
+
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+				int count = 0;
+				if(doctor.getAppointments().size() != 0)
+				for(Appointment app : doctor.getAppointments())
+					model.add(count++, "D: " + app.getDocName() + "; P: " + app.getPatientName() + " - " + app.getDate());
+			}
+			
+		});
+		btnUpdate.setBounds(36, 426, 117, 29);
+		getContentPane().add(btnUpdate);
 	}
 }
